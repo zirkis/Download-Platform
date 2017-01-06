@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
-import {Card, Icon, Image} from 'semantic-ui-react';
+import {Card, Image} from 'semantic-ui-react';
 import DocumentTitle from 'react-document-title';
 
 import styles from './styles.css';

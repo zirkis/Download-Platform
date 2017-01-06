@@ -54,8 +54,7 @@ export function checkAuth() {
       dispatch({
         type: CHECK_AUTH_KO
       });
-      dispatch(push(CONFIG['loginRoute']));
-      return;
+      return Promise.resolve();
     }
     return axios({
       url: `${CONFIG['apiUrl']}/users/authenticate`,

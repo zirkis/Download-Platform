@@ -39,8 +39,7 @@ class Container extends Component {
       return null;
     }
     return <View children={this.props.children}
-                 location={this.props.location.pathname}
-    />
+    location={this.props.location.pathname}/>;
   }
 }
 
