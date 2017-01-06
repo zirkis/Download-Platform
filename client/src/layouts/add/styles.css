@@ -1,0 +1,11 @@
+.page {}
+.container {
+	padding-top: 20px;
+}
+.side-menu {
+	padding: 30px;
+}
+.content {}
+.title {
+	text-align: center;
+}

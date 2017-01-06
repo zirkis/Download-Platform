@@ -17,4 +17,4 @@ class Helper extends Component {
   }
 }
 
-export default Helper;
+export default Helper

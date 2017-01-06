@@ -9,8 +9,14 @@ class View extends Component {
   render() {
     const location = this.props.location;
     const isAuthenticated = this.props.isAuthenticated;
+    let profile = null;
     let button = null;
     if (isAuthenticated) {
+      profile = (
+        <Menu.Item active={location === '/profile'}
+                   name='Profile'
+                   onClick={() => {this.props.redirect('/profile');}}/>
+      );
       button = (
         <Menu.Item>
           <Button color='red'
@@ -41,6 +47,7 @@ class View extends Component {
           <Menu.Item active={location === '/series'}
                      name='Series'
                      onClick={() => {this.props.redirect('/series');}}/>
+          {profile}
           <Menu.Menu position='right'>
             <Menu.Item>
               <Input action={{ icon: 'search' }} placeholder='Search...' />

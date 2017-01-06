@@ -11,7 +11,7 @@ class View extends Component {
     const film = this.props.film;
     console.log(film);
     return (
-      <DocumentTitle title='Films'>
+      <DocumentTitle title='Film'>
         <div styleName='page'>
           <div styleName='container'>
             <h1 styleName="title">{film.attributes.name}</h1>

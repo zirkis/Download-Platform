@@ -5,7 +5,7 @@ import {push} from 'react-router-redux';
 import View from './view';
 import {logout} from '../../actions/user';
 
-@connect((store) => {
+@connect(store => {
     return {
       user: store.user
     };

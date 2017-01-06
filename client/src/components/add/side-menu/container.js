@@ -4,11 +4,7 @@ import {push} from 'react-router-redux';
 
 import View from './view';
 
-@connect(store => {
-    return {
-      user: store.user
-    };
-  },
+@connect(null,
   dispatch => {
     return {
       redirect: path => {
@@ -18,11 +14,7 @@ import View from './view';
   })
 class Container extends Component {
   render() {
-    return (
-      <View
-        user={this.props.user}
-        redirect={this.props.redirect}/>
-    );
+    return <View redirect={this.props.redirect}/>
   }
 }
 

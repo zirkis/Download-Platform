@@ -3,7 +3,7 @@ import CSSModules from 'react-css-modules';
 import DocumentTitle from 'react-document-title';
 import {Grid, Image} from 'semantic-ui-react'
 
-import HomeLatestFilm from '../../components/home-latest-film/container';
+import HomeLatestFilm from '../../components/latest-film/container';
 import styles from './styles.css';
 
 @CSSModules(styles)
