@@ -21,7 +21,9 @@ class View extends Component {
                   <Card.Header>{film.attributes.name}</Card.Header>
                   <Card.Meta>
                     Added the:
-                    <DateHelper date={film.attributes.addedAt}/>
+                    <div>
+                      <DateHelper date={film.attributes.addedAt}/>
+                    </div>
                   </Card.Meta>
                 </Card.Content>
               </Card>

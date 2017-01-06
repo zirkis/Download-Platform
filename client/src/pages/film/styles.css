@@ -9,3 +9,30 @@
 .title {
 	text-align: center;
 }
+.film_poster, .film_info
+{
+	display: inline-block !important;
+	width: 350px;
+	vertical-align: middle;
+	margin: 20px;
+}
+.film_poster
+{
+	width: 390px;
+}
+
+.film_info{
+	width: 300px;
+	text-align: justify;
+	font-size: 1.3em !important;
+}
+h3, p
+{
+	display: inline-block;
+}
+.download
+{
+	text-align: center;
+	display: block;
+	margin-top: 20px;
+}
