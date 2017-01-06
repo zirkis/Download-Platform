@@ -14,7 +14,8 @@ const filmSchema = new Schema({
   productionDate: {type: Date},
   actors:  [{type: String}],
   addedAt: {type: Date, default: Date.now()},
-  downloadLinks:  [{ type: ObjectId, ref: 'Link' }]
+  downloadLinks:  [{ type: ObjectId, ref: 'Link' }],
+  language: {type: String}
 });
 
 const model = mongoose.model('Film', filmSchema);
