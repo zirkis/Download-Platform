@@ -1,0 +1,7 @@
+export const FILMS_FETCH = 'FILMS_FETCH';
+export const FILMS_FULFILLED = 'FILMS_FULFILLED';
+export const FILMS_ERROR = 'FILMS_ERROR';
+
+export const FILMS_SORTING = 'FILMS_SORTING';
+export const FILMS_SORTED = 'FILMS_SORTED';
+export const FILMS_SORTED_FAIL = 'FILMS_SORTED_FAIL';
