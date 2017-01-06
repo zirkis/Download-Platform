@@ -6,21 +6,21 @@ import {Grid} from 'semantic-ui-react';
 import SideMenu from '../../components/add/side-menu/container';
 import styles from './styles.css';
 
-String.prototype.capitalize = function() {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
 @CSSModules(styles)
 class Layout extends Component {
+  prepareTitle(path) {
+    path = path.substr(1);
+    path = path.replace(new RegExp('/', 'g'), ' ');
+    const title = path.charAt(0).toUpperCase() + path.slice(1);
+    return title;
+  }
   render() {
-    const title = this.props.children.props.location.pathname;
-    title.capitalize().replace('\\', ' ');
-    console.log(title);
+    const title = this.prepareTitle(this.props.children.props.location.pathname);
     return (
-    <DocumentTitle title='Add'>
+    <DocumentTitle title={title}>
       <div styleName='page'>
         <div styleName='container'>
-          <h1 styleName='title'>Add</h1>
+          <h1 styleName='title'>{title}</h1>
           <Grid>
             <Grid.Column width={4}>
               <div styleName='side-menu'>

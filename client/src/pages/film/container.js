@@ -30,7 +30,6 @@ class Container extends Component {
     const id = this.props.routeParams.id;
     return this.props.fetchFilm(id)
       .then(() => {
-        console.log(this.props);
         this.setState({loaded: true});
       })
   }
