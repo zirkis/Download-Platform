@@ -8,10 +8,13 @@ const self = process.env.SERVER_IP;
 
 // eslint-disable-next-line new-cap
 const serieSchema = new Schema({
+  name: {type: String, required: true, unique: true},
   description: {type: String, default: 'NA'},
   posterLink: {type: String},
   productionDate: {type: Date},
   actors: [{type: String}],
+  director: {type: String},
+  country: {type: String},
   episodes: [{ type: ObjectId, ref: 'Episode' }],
 });
 
