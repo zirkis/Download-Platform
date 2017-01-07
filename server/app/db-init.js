@@ -2,7 +2,7 @@
 const User = require('./model/common/users').model;
 const Film = require('./model/common/films').model;
 const Link = require('./model/common/links').model;
-const Serie =  require('../model/common/series').model;
+const Serie =  require('./model/common/series').model;
 //const Episode = require('../model/common/episodes').model;
 
 const db = {
@@ -52,7 +52,6 @@ const db = {
 
     Promise.all(promisesLink)
       .then(res => {
-        console.log(res);
         const films = [];
         const promisesFilm = [];
         films.push(new Film({
@@ -118,7 +117,7 @@ const db = {
           length: 104
         }));
         films.push(new Film({
-          name: "Passengers",
+          name: 'Passengers',
           description: `Alors que 5000 passagers endormis pour longtemps voyagent dans l’espace vers une nouvelle planète, deux d’entre eux sont accidentellement tirés de leur sommeil artificiel 90 ans trop tôt. Jim et Aurora doivent désormais accepter l’idée de passer le reste de leur existence à bord du vaisseau spatial. Alors qu’ils éprouvent peu à peu une indéniable attirance, ils découvrent que le vaisseau court un grave danger. La vie des milliers de passagers endormis est entre leurs mains…`,
           actors: [
             'Jennifer Lawrence',
@@ -134,8 +133,8 @@ const db = {
         }));
 
         films.push(new Film({
-          name: "Sully",
-          description: `The true story of the US Airways pilot who saved his passengers by landing on the Hudson in 2009. On January 15, 2009, the world witnessed the "miracle over the Hudson" accomplished by Commander "Sully" Sullenberger: He managed to put his aircraft on the icy waters of the Hudson River, saving the lives of the 155 passengers on board. However, while Sully was hailed by public opinion and the media for his unprecedented achievement in the history of aviation, an investigation was opened, threatening to destroy his reputation and his career.`,
+          name: 'Sully',
+          description: `The true story of the US Airways pilot who saved his passengers by landing on the Hudson in 2009. On January 15, 2009, the world witnessed the "miracle over the Hudson' accomplished by Commander "Sully" Sullenberger: He managed to put his aircraft on the icy waters of the Hudson River, saving the lives of the 155 passengers on board. However, while Sully was hailed by public opinion and the media for his unprecedented achievement in the history of aviation, an investigation was opened, threatening to destroy his reputation and his career.`,
           actors: [
             'Tom Hanks',
             'Aaron Eckhart',
@@ -150,7 +149,7 @@ const db = {
         }));
 
         films.push(new Film({
-          name: "First Contact",
+          name: 'First Contact',
           description: `When mysterious ships from the depths of space pop up everywhere on Earth, a team of experts is gathered under the direction of linguist Louise Banks to try to understand their intentions. Faced with the enigma of their presence and their mysterious messages, the reactions in the world are extreme and humanity soon finds itself on the brink of an absolute war. Louise Banks and her team have very little time to find answers. To get them, the young woman will take a risk that could not only cost her life, but destroy the human race ...`,
           actors: [
             'Amy Adams',
@@ -166,7 +165,7 @@ const db = {
         }));
 
         films.push(new Film({
-          name: "Fantastic Beasts and Where to Find Them",
+          name: 'Fantastic Beasts and Where to Find Them',
           description: `New York, 1926. The world of sorcerers is in great danger. A mysterious force sows chaos in the streets of the city: the sorcerer community now risks being at the mercy of the Faithful of Salem, a fanatical group of Non-Maj '(American version of the "Muggle") determined to annihilate them. As for the formidable sorcerer Gellert Grindelwald, after having wreaked havoc in Europe, he disappeared ... and remains untraceable.`,
           actors: [
             'Eddie Redmayne',
@@ -182,7 +181,7 @@ const db = {
         }));
 
         films.push(new Film({
-          name: "Monster Cars",
+          name: 'Monster Cars',
           description: `Monster Cars embarks on us to live the incredible adventure of an ordinary boy, Tripp, making friendship for an adorable monster, Critch. To escape the quiet life of his hometown, Tripp, a high school student, built a "Monster Car", 4x4 overpowered and oversized, from spare parts found in a broken. As a result of an accident near an oil drilling site, he discovers a strange and underground creature who has the taste and a certain talent for speed. Tripp may have found a way out of the city and won a friend who does not look like anyone.`,
           actors: [
             'Lucas Till',
@@ -204,18 +203,10 @@ const db = {
       })
       .then(() => {
         console.log('Films saved successfully');
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    Promise.all()
-      .then(res => {
-        console.log(res);
         const series = [];
         const promisesSerie = [];
         series.push(new Serie({
-          name: "Breaking Bad",
+          name: 'Breaking Bad',
           description: `Walter White, 50, is a chemistry professor at a New Mexico high school. To support Skyler, his pregnant wife, and Walt Junior, his disabled son, he is forced to work doubly. His already morose daily becomes squarely black when he learns that he is suffering from an incurable cancer of the lungs. Doctors give him no more than two years to live. To quickly raise a lot of money to save his family, Walter sees only one solution: to use his chemistry knowledge to make and sell crystal meth, a synthetic drug that pays a lot. He proposes to Jesse, one of his former pupils become a small dealer of second zone, to team up with him. The improvised duo set up a mobile lab in an old camper van. This unexpected association will lead them into a series of comic and pathetic vicissitudes.`,
           actors: [
             'Bryan Cranston',
@@ -224,7 +215,7 @@ const db = {
           ],
           posterLink: 'http://images.amcnetworks.com/amc.com/wp-content/uploads/2010/12/breaking-bad-S5-400x600-compressedV1.jpg',
           productionDate: new Date(2008,1),
-          director: "Vince Gilligan",
+          director: 'Vince Gilligan',
           country: 'USA'
         }));
 
