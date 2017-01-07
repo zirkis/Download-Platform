@@ -20,7 +20,7 @@ class View extends Component {
                 <Card.Content>
                   <Card.Header>{film.attributes.name}</Card.Header>
                   <Card.Meta>
-                    Added the:
+                    Added on:
                     <div>
                       <DateHelper date={film.attributes.addedAt}/>
                     </div>

@@ -4,8 +4,7 @@ import View from './view';
 
 class Container extends Component {
   render() {
-    return <View links={this.props.links}
-                 language={this.props.language}/>
+    return <View links={this.props.links}/>
   }
 }
 

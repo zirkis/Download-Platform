@@ -37,7 +37,6 @@ class View extends Component {
               <Table.Cell>{links[1].attributes.quality}</Table.Cell>
               <Table.Cell>{links[1].attributes.host}</Table.Cell>
               <Table.Cell>{links[1].attributes.uploader}</Table.Cell>
-
               <Table.Cell><Button color='red' size='small'>DOWNLOAD</Button></Table.Cell>
             </Table.Row>
             <Table.Row>
