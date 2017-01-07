@@ -9,7 +9,7 @@ import {createFilm} from '../../../actions/film';
     return {
       createFilmHandler: film => {
         console.log(film);
-        // dispatch(createFilm(film));
+        dispatch(createFilm(film));
       }
     }
   })

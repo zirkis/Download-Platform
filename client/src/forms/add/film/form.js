@@ -11,35 +11,36 @@ const floatingLabelStyle = {
   color: fullBlack
 };
 
-const validate = values => {
+const validation = values => {
   const errors = {};
-  const requiredFields = [];
+  const requiredFields = [
+    'name',
+    'description',
+    'posterLink',
+    'productionDate',
+    'actors',
+    'director',
+    'country',
+    'length'
+  ];
   requiredFields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required'
     }
   });
-  /*
-  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
-  }
-  */
-  return errors
+  return errors;
 };
 
 @reduxForm({
   form: 'add_film',
-  validate,
+  validation,
 })
 @CSSModules(styles)
 class Form extends React.Component {
-  onSubmit() {
-    const {handleSubmit} = this.props;
-    console.log(this.props);
-  }
   render() {
+    const {handleSubmit} = this.props;
     return (
-      <form onSubmit={() => {this.onSubmit()}} styleName='form'>
+      <form onSubmit={handleSubmit} styleName='form'>
         <div>
           <Field name="name" component={TextField} type="text"
                  floatingLabelText="Name"

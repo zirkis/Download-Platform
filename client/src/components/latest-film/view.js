@@ -6,25 +6,27 @@ import DateHelper from '../../helpers/date';
 
 class View extends Component {
   render() {
+    console.log('coucou');
     let cards = [];
     const content = [];
     const films = this.props.films;
     if (!films) {
       return null;
     }
-    films.forEach(film => {
-      const link = `/film/${film.id}`;
+    let nbMaxFilms = films.length < 8 ? films.length : 8;
+    for (let i=0; i < nbMaxFilms; i++) {
+      const link = `/film/${films[i].id}`;
       cards.push(
         <Grid.Column key={cards.length}>
           <Link to={link}>
             <Card >
-              <Image src={film.attributes.posterLink} />
+              <Image src={films[i].attributes.posterLink} />
               <Card.Content>
-                <Card.Header>{film.attributes.name}</Card.Header>
+                <Card.Header>{films[i].attributes.name}</Card.Header>
                 <Card.Meta>
-                  Added the:
+                  Added on:
                   <div>
-                    <DateHelper date={film.attributes.addedAt}/>
+                    <DateHelper date={films[i].attributes.addedAt}/>
                   </div>
                 </Card.Meta>
               </Card.Content>
@@ -40,7 +42,7 @@ class View extends Component {
         );
         cards = [];
       }
-    });
+    }
     if (cards) {
       content.push(
         <Grid.Row columns={4} key={content.length}>
@@ -55,4 +57,5 @@ class View extends Component {
     )
   }
 }
+
 export default View;

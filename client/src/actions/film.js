@@ -4,8 +4,6 @@ import Qs from 'qs';
 import CONFIG from '../../config/default.json';
 import {
   FILM_CREATE,
-  FILM_CREATE_SUCCESS,
-  FILM_CREATE_ERROR,
   FILM_FETCH,
   FILM_FULFILLED,
   FILM_ERROR

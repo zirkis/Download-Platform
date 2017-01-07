@@ -61,7 +61,7 @@ class View extends Component {
             <hr/>
             <p styleName="download">
             </p>
-            <DownloadBar links={film.relationships.downloadLinks} language={film.attributes.language}/>
+            <DownloadBar links={film.relationships.downloadLinks}/>
           </div>
         </div>
       </DocumentTitle>

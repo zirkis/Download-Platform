@@ -70,7 +70,7 @@ export function sortFilms(films) {
     }
     dispatch(sortingInProgress());
     films.sort((a, b) => {
-      return a.attributes.addedAt < b.attributes.addedAt
+      return a.attributes.addedAt > b.attributes.addedAt
     });
     dispatch({
       type: FILMS_SORTED,
