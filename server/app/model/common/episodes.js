@@ -9,7 +9,9 @@ const self = process.env.SERVER_IP;
 // eslint-disable-next-line new-cap
 const episodeSchema = new Schema({
   saison: {type: Number, required: true},
-  episodeNumber: {type: Number, required: true},
+  number: {type: Number, required: true},
+  name: {type: String, required: true},
+  resume: {type: String, required: true},
   downloadLinks:  [{ type: ObjectId, ref: 'Link' }]
 });
 

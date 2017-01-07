@@ -15,7 +15,7 @@ const filmSchema = new Schema({
   actors:  [{type: String}],
   director: {type: String},
   country: {type: String},
-  length : {type: Number},
+  length: {type: Number},
   addedAt: {type: Date, default: Date.now()},
   downloadLinks:  [{ type: ObjectId, ref: 'Link' }]
 });
