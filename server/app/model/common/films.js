@@ -13,9 +13,11 @@ const filmSchema = new Schema({
   posterLink: {type: String},
   productionDate: {type: Date},
   actors:  [{type: String}],
+  director: {type: String},
+  country: {type: String},
+  length : {type: Number},
   addedAt: {type: Date, default: Date.now()},
-  downloadLinks:  [{ type: ObjectId, ref: 'Link' }],
-  language: {type: String}
+  downloadLinks:  [{ type: ObjectId, ref: 'Link' }]
 });
 
 const model = mongoose.model('Film', filmSchema);

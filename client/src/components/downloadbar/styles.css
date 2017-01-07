@@ -1,2 +1,7 @@
 .container {
 }
+.table_links
+{
+    margin: 0 auto !important;
+    width: 85% !important;
+}

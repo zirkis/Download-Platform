@@ -25,9 +25,27 @@ const db = {
     const links = [];
     const promisesLink = [];
     links.push(new Link({
-      host: 'MEGA',
-      link: 'http:mega.com',
-      quality: 'HD'
+      host: 'MegaUpload',
+      link: 'http://www.megaupload.com',
+      quality: '720p',
+      language: 'VO',
+      uploader: 'zirkis'
+    }));
+    links.push(new Link({
+      host: 'FileShare',
+      link: 'http://www.fileshare.com',
+      quality: '1080p',
+      language: 'VF',
+      uploader: 'didi34'
+
+    }));
+    links.push(new Link({
+      host: 'Pirate Bay',
+      link: 'http://www.piratebay.com',
+      quality: '4K',
+      language: 'VOST',
+      uploader: 'momo60'
+
     }));
     links.forEach(link => {
       promisesLink.push(link.save());
@@ -47,8 +65,10 @@ const db = {
           ],
           posterLink: 'http://fr.web.img3.acsta.net/r_1920_1080/pictures/16/11/18/17/49/128537.jpg',
           productionDate: new Date(2016,1),
-          downloadLinks: res[0]._id,
-          language: "VF"
+          downloadLinks: [res[0]._id,res[1]._id],
+          director: "John Lee Hancock",
+          country: 'USA',
+          length: 121
         }));
 
         films.push(new Film({
@@ -62,7 +82,9 @@ const db = {
           posterLink: 'http://fr.web.img6.acsta.net/r_1920_1080/pictures/16/10/19/14/33/069648.jpg',
           productionDate: new Date(2016,1),
           downloadLinks: res[0]._id,
-          language: "VOST"
+          director: "Gareth Edwards",
+          country: 'USA',
+          length: 141
         }));
 
         films.push(new Film({
@@ -76,7 +98,9 @@ const db = {
           posterLink: 'http://fr.web.img3.acsta.net/r_1920_1080/pictures/16/10/28/13/54/576646.jpg',
           productionDate: new Date(2016,1),
           downloadLinks: res[0]._id,
-          language: "VF"
+          director: "Justin Kurzel",
+          country: 'USA',
+          length: 113
         }));
 
         films.push(new Film({
@@ -90,7 +114,9 @@ const db = {
           posterLink: 'http://fr.web.img6.acsta.net/r_1920_1080/pictures/16/09/30/14/48/139893.jpg',
           productionDate: new Date(2016,1),
           downloadLinks: res[0]._id,
-          language: "VF"
+          director: "Hugo Gélin",
+          country: 'France',
+          length: 104
         }));
 
         films.push(new Film({
@@ -104,7 +130,9 @@ const db = {
           posterLink: 'http://fr.web.img2.acsta.net/r_1920_1080/pictures/16/12/14/16/45/405336.jpg',
           productionDate: new Date(2016,1),
           downloadLinks: res[0]._id,
-          language: "VOSTFR"
+          director: 'Morten Tyldum',
+          country: 'USA',
+          length: 129
         }));
 
         films.forEach(film => {
