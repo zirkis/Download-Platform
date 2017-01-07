@@ -3,11 +3,26 @@ import Qs from 'qs';
 
 import CONFIG from '../../config/default.json';
 import {
- FILM_FETCH,
- FILM_FULFILLED,
- FILM_ERROR
+  FILM_CREATE,
+  FILM_CREATE_SUCCESS,
+  FILM_CREATE_ERROR,
+  FILM_FETCH,
+  FILM_FULFILLED,
+  FILM_ERROR
 } from '../constants/film';
 import {queryLinks} from './links';
+
+function filmCreate() {
+  return {
+    type: FILM_CREATE
+  }
+}
+export function createFilm(film) {
+  return dispatch => {
+    dispatch(filmCreate());
+    return Promise.resolve(film);
+  }
+}
 
 function filmFetch() {
   return {

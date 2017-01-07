@@ -11,6 +11,9 @@ import DateHelper from '../../helpers/date'
 class View extends Component {
   render() {
     const film = this.props.film;
+    if (!film) {
+      return 'COuCOU';
+    }
     return (
       <DocumentTitle title='Film'>
         <div styleName='page'>
