@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
 import {Image} from 'semantic-ui-react';
-import {Button} from 'semantic-ui-react';
 import DocumentTitle from 'react-document-title';
 
 import styles from './styles.css';
-import DateHelper from '../../helpers/date'
+import DateHelper from '../../helpers/date';
+import DownloadBar from '../../components/downloadbar/container';
 
 @CSSModules(styles)
 class View extends Component {
@@ -26,31 +26,42 @@ class View extends Component {
             </card>
             <div styleName="film_info">
               <div>
-                <h3>Date de sortie : </h3>
+                <h3>Release :&nbsp;</h3>
                 <DateHelper date={film.attributes.productionDate}/>
               </div>
               <div>
-                <h3>Acteurs : </h3>
+                <h3>Director :&nbsp;</h3>
+                {film.attributes.director}
+              </div><br/>
+              <div>
+                <h3>Actors :&nbsp;</h3>
                 {film.attributes.actors[0]}, {film.attributes.actors[1]}, {film.attributes.actors[2]}
               </div>
               <br/>
               <div>
-                <h3>Synopsis : </h3>
-                {film.attributes.description}
-              </div><br/>
-              <div>
-                <h3>Langue : </h3> {film.attributes.language}
+                <h3>Country :&nbsp;</h3>
+                {film.attributes.country}
               </div>
               <br/>
               <div>
-                <h3>Format : </h3> DVD</div><br/>
+                <h3>Synopsis :&nbsp;</h3>
+                {film.attributes.description}
+              </div>
+              <br/>
               <div>
-                <h3>Ajouté le : </h3>
+                <h3>Length :&nbsp;</h3>
+                {film.attributes.length}min
+              </div>
+              <br/>
+              <div>
+                <h3>Added on :&nbsp;</h3>
                 <DateHelper date={film.attributes.addedAt}/>
               </div>
             </div>
             <hr/>
-            <p styleName="download"><Button color='red' size='massive'>DOWNLOAD</Button></p>
+            <p styleName="download">
+            </p>
+            <DownloadBar links={film.relationships.downloadLinks} language={film.attributes.language}/>
           </div>
         </div>
       </DocumentTitle>

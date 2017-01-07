@@ -9,43 +9,44 @@ class View extends Component {
     let cards = [];
     const content = [];
     const films = this.props.films;
-    if (films) {
-      films.forEach(film => {
-        const link = `/film/${film.id}`;
-        cards.push(
-          <Grid.Column key={cards.length}>
-            <Link to={link}>
-              <Card >
-                <Image src={film.attributes.posterLink} />
-                <Card.Content>
-                  <Card.Header>{film.attributes.name}</Card.Header>
-                  <Card.Meta>
-                    Added the:
-                    <div>
-                      <DateHelper date={film.attributes.addedAt}/>
-                    </div>
-                  </Card.Meta>
-                </Card.Content>
-              </Card>
-            </Link>
-          </Grid.Column>
-        );
-        if (cards.length % 4 === 0) {
-          content.push(
-            <Grid.Row columns={4} key={content.length}>
-              {cards}
-            </Grid.Row>
-          );
-          cards = [];
-        }
-      });
-      if (cards) {
+    if (!films) {
+      return null;
+    }
+    films.forEach(film => {
+      const link = `/film/${film.id}`;
+      cards.push(
+        <Grid.Column key={cards.length}>
+          <Link to={link}>
+            <Card >
+              <Image src={film.attributes.posterLink} />
+              <Card.Content>
+                <Card.Header>{film.attributes.name}</Card.Header>
+                <Card.Meta>
+                  Added the:
+                  <div>
+                    <DateHelper date={film.attributes.addedAt}/>
+                  </div>
+                </Card.Meta>
+              </Card.Content>
+            </Card>
+          </Link>
+        </Grid.Column>
+      );
+      if (cards.length % 4 === 0) {
         content.push(
           <Grid.Row columns={4} key={content.length}>
             {cards}
           </Grid.Row>
         );
+        cards = [];
       }
+    });
+    if (cards) {
+      content.push(
+        <Grid.Row columns={4} key={content.length}>
+          {cards}
+        </Grid.Row>
+      );
     }
     return (
       <Grid>

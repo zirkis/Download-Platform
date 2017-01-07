@@ -9,7 +9,9 @@ const self = process.env.SERVER_IP;
 const linkSchema = new Schema({
   host: {type: String},
   link: {type: String, required: true},
-  quality: {type: String, required: true}
+  quality: {type: String, required: true},
+  language: {type: String, required: true},
+  uploader: {type: String}
 });
 
 const model = mongoose.model('Link', linkSchema);
