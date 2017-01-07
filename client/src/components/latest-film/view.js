@@ -10,19 +10,24 @@ class View extends Component {
     const content = [];
     const films = this.props.films;
     if (films) {
-      films.forEach(film => {
-        const link = `/film/${film.id}`;
+      let nbMaxFilms = 8;
+      if (films.length < 8){
+        nbMaxFilms = films.length;
+      }
+      for (let i=0; i<nbMaxFilms; i++)
+      {
+        const link = `/film/${films[i].id}`;
         cards.push(
           <Grid.Column key={cards.length}>
             <Link to={link}>
               <Card >
-                <Image src={film.attributes.posterLink} />
+                <Image src={films[i].attributes.posterLink} />
                 <Card.Content>
-                  <Card.Header>{film.attributes.name}</Card.Header>
+                  <Card.Header>{films[i].attributes.name}</Card.Header>
                   <Card.Meta>
                     Added on:
                     <div>
-                      <DateHelper date={film.attributes.addedAt}/>
+                      <DateHelper date={films[i].attributes.addedAt}/>
                     </div>
                   </Card.Meta>
                 </Card.Content>
@@ -38,7 +43,8 @@ class View extends Component {
           );
           cards = [];
         }
-      });
+      }
+
       if (cards) {
         content.push(
           <Grid.Row columns={4} key={content.length}>

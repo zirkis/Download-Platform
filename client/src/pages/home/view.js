@@ -4,6 +4,7 @@ import DocumentTitle from 'react-document-title';
 import {Grid, Image} from 'semantic-ui-react'
 
 import HomeLatestFilm from '../../components/latest-film/container';
+import HomeLatestSerie from '../../components/latest-serie/container';
 import styles from './styles.css';
 
 @CSSModules(styles)
@@ -49,12 +50,27 @@ class View extends Component {
                 <Image src='http://semantic-ui.com/images/wireframe/image.png' />
               </Grid.Column>
               <Grid.Column width={10}>
+                <h2>Latest Movies</h2>
                 <HomeLatestFilm />
               </Grid.Column>
               <Grid.Column width={3}>
                 <Image src='http://semantic-ui.com/images/wireframe/image.png' />
               </Grid.Column>
             </Grid.Row>
+
+            <Grid.Row>
+              <Grid.Column width={3}>
+                <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+              <Grid.Column width={10}>
+                <h2>Latest Series</h2>
+                <HomeLatestSerie />
+              </Grid.Column>
+              <Grid.Column width={3}>
+                <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+              </Grid.Column>
+            </Grid.Row>
+
           </Grid>
         </div>
       </DocumentTitle>
