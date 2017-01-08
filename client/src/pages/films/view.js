@@ -12,7 +12,7 @@ class View extends Component {
       <DocumentTitle title='Films'>
         <div styleName='page'>
           <div styleName='container'>
-            <h1>Films</h1>
+            <h1>Movies</h1>
             <PosterArea
               media={this.props.films}
               typeMedia='film'
