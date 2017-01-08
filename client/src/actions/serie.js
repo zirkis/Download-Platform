@@ -8,7 +8,6 @@ import {
   SERIE_FULFILLED,
   SERIE_ERROR
 } from '../constants/serie';
-import {queryLinks} from './links';
 
 function serieCreate() {
   return {
@@ -50,16 +49,6 @@ export function fetchSerie(_id) {
       .then(res => {
         const series = res.data.data;
         serie = series[0];
-        const links = serie.relationships.downloadLinks.data.map(link => {
-          return link.id;
-        });
-        return queryLinks(links);
-      })
-      .then(res => {
-        serie.relationships.downloadLinks = {
-          ...serie.relationships.downloadLinks,
-          data: res
-        };
         dispatch({
           type: SERIE_FULFILLED,
           payload: serie
