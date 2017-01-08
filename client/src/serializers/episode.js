@@ -1,5 +1,23 @@
-const JSONAPISerializer = require('jsonapi-serializer').Serializer;
+import Promise from 'bluebird';
+import {Serializer, Deserializer} from 'jsonapi-serializer';
 
-export const EpisodeSerializer = new JSONAPISerializer('episodes', {
-  attributes: ['email', 'password']
-});
+const _Deserializer = new Deserializer({keyForAttribute: 'camelCase'});
+_Deserializer.deserialize = Promise.promisify(_Deserializer.deserialize);
+
+export const EpisodeSerializer = {
+  serialize(data) {
+    return new Serializer('episodes', {
+      attributes: [
+        'saison',
+        'number',
+        'name',
+        'resume',
+        'downloadLinks'
+      ]
+    }).serialize(data);
+  },
+  deserialize(data) {
+    return _Deserializer
+      .deserialize(data);
+  }
+};

@@ -70,7 +70,7 @@ export function sortSeries(series) {
     }
     dispatch(sortingInProgress());
     series.sort((a, b) => {
-      return a.attributes.addedAt > b.attributes.addedAt
+      return a.attributes.addedAt < b.attributes.addedAt
     });
     dispatch({
       type: SERIES_SORTED,

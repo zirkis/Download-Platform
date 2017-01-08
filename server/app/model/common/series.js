@@ -16,6 +16,7 @@ const serieSchema = new Schema({
   director: {type: String},
   country: {type: String},
   episodes: [{ type: ObjectId, ref: 'Episode' }],
+  addedAt: {type: Date, default: Date.now()},
 });
 
 const model = mongoose.model('Serie', serieSchema);
