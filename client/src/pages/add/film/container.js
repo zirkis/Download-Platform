@@ -7,7 +7,7 @@ import {createFilm} from '../../../actions/film';
 @connect(null,
   dispatch => {
     return {
-      createFilmHandler: film => {
+      createFilm: film => {
         console.log(film);
         dispatch(createFilm(film));
       }
@@ -15,7 +15,7 @@ import {createFilm} from '../../../actions/film';
   })
 class Container extends Component {
   render() {
-    return <View submitHandler={this.props.createFilmHandler}/>;
+    return <View onSubmit={this.props.createFilm}/>;
   }
 }
 

@@ -15,27 +15,28 @@ class Layout extends Component {
     return title;
   }
   render() {
-    const title = this.prepareTitle(this.props.children.props.location.pathname);
+    const title =
+      this.prepareTitle(this.props.children.props.location.pathname);
     return (
-    <DocumentTitle title={title}>
-      <div styleName='page'>
-        <div styleName='container'>
-          <h1 styleName='title'>{title}</h1>
-          <Grid>
-            <Grid.Column width={4}>
-              <div styleName='side-menu'>
-                <SideMenu/>
-              </div>
-            </Grid.Column>
-            <Grid.Column width={12}>
-              <div styleName='content'>
-                {this.props.children}
-              </div>
-            </Grid.Column>
-          </Grid>
+      <DocumentTitle title={title}>
+        <div styleName='page'>
+          <div styleName='container'>
+            <h1 styleName='title'>{title}</h1>
+            <Grid>
+              <Grid.Column width={4}>
+                <div styleName='side-menu'>
+                  <SideMenu/>
+                </div>
+              </Grid.Column>
+              <Grid.Column width={12}>
+                <div styleName='content'>
+                  {this.props.children}
+                </div>
+              </Grid.Column>
+            </Grid>
+          </div>
         </div>
-      </div>
-    </DocumentTitle>
+      </DocumentTitle>
     );
   }
 }

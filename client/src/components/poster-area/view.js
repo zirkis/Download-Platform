@@ -6,27 +6,23 @@ import DateHelper from '../../helpers/date';
 
 class View extends Component {
   render() {
-    console.log('coucou');
+    const {media, typeMedia, maxDisplay, mediaPerColumn} = this.props;
     let cards = [];
     const content = [];
-    const films = this.props.films;
-    if (!films) {
-      return null;
-    }
-    let nbMaxFilms = films.length < 8 ? films.length : 8;
-    for (let i=0; i < nbMaxFilms; i++) {
-      const link = `/film/${films[i].id}`;
+
+    for (let i=0; i < maxDisplay; i++) {
+      const link = `/${typeMedia}/${media[i].id}`;
       cards.push(
         <Grid.Column key={cards.length}>
           <Link to={link}>
             <Card >
-              <Image src={films[i].attributes.posterLink} />
+              <Image src={media[i].attributes.posterLink} />
               <Card.Content>
-                <Card.Header>{films[i].attributes.name}</Card.Header>
+                <Card.Header>{media[i].attributes.name}</Card.Header>
                 <Card.Meta>
                   Added on:
                   <div>
-                    <DateHelper date={films[i].attributes.addedAt}/>
+                    <DateHelper date={media[i].attributes.addedAt}/>
                   </div>
                 </Card.Meta>
               </Card.Content>
@@ -34,28 +30,29 @@ class View extends Component {
           </Link>
         </Grid.Column>
       );
-      if (cards.length % 4 === 0) {
+      if (cards.length % mediaPerColumn === 0) {
         content.push(
-          <Grid.Row columns={4} key={content.length}>
+          <Grid.Row columns={mediaPerColumn} key={content.length}>
             {cards}
           </Grid.Row>
         );
         cards = [];
       }
     }
+
     if (cards) {
       content.push(
-        <Grid.Row columns={4} key={content.length}>
+        <Grid.Row columns={mediaPerColumn} key={content.length}>
           {cards}
         </Grid.Row>
       );
     }
+
     return (
       <Grid>
         {content}
       </Grid>
-    )
+    );
   }
 }
-
 export default View;

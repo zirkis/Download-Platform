@@ -3,8 +3,7 @@ import CSSModules from 'react-css-modules';
 import DocumentTitle from 'react-document-title';
 import {Grid, Image} from 'semantic-ui-react'
 
-import HomeLatestFilm from '../../components/latest-film/container';
-import HomeLatestSerie from '../../components/latest-serie/container';
+import PosterArea from '../../components/poster-area/container';
 import styles from './styles.css';
 
 @CSSModules(styles)
@@ -51,9 +50,17 @@ class View extends Component {
               </Grid.Column>
               <Grid.Column width={10}>
                 <h2>Latest Movies</h2>
-                <HomeLatestFilm />
+                <PosterArea
+                  media={this.props.films}
+                  typeMedia='film'
+                  maxDisplay={8}
+                />
                 <h2>Latest Series</h2>
-                <HomeLatestSerie />
+                <PosterArea
+                  media={this.props.series}
+                  typeMedia='serie'
+                  maxDisplay={8}
+                />
               </Grid.Column>
               <Grid.Column width={3}>
                 <Image src='http://semantic-ui.com/images/wireframe/image.png' />

@@ -85,4 +85,3 @@ export function logout() {
     dispatch(push(CONFIG['redirectRouteAfterLogout']));
   }
 }
-

@@ -1,5 +1,4 @@
 'use strict';
-
 const UsersInit = require('./users').init;
 const LinksInit = require('./links').init;
 const FilmsInit = require('./films').init;

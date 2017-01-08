@@ -19,8 +19,7 @@ import {checkAuth} from '../../actions/user';
         dispatch(logout());
       }
     }
-  }
-)
+  })
 class Container extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +38,7 @@ class Container extends Component {
       return null;
     }
     return <View children={this.props.children}
-    location={this.props.location.pathname}/>;
+                 location={this.props.location.pathname}/>;
   }
 }
 

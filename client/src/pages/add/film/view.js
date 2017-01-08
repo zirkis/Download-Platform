@@ -7,7 +7,7 @@ import AddFilmForm from '../../../forms/add/film/form';
 @CSSModules(styles)
 class View extends Component {
   render() {
-    const onSubmit = this.props.submitHandler;
+    const {onSubmit} = this.props;
     return (
       <div styleName='container'>
         <AddFilmForm onSubmit={onSubmit}/>

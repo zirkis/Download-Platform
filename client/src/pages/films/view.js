@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
 import DocumentTitle from 'react-document-title';
 
+import PosterArea from '../../components/poster-area/container';
 import styles from './styles.css';
-import AllFilm from '../../components/all-film/container';
 
 @CSSModules(styles)
 class View extends Component {
@@ -13,7 +13,12 @@ class View extends Component {
         <div styleName='page'>
           <div styleName='container'>
             <h1>Films</h1>
-            <AllFilm />
+            <PosterArea
+              media={this.props.films}
+              typeMedia='film'
+              maxDisplay={20}
+              mediaPerColumn={5}
+            />
           </div>
         </div>
       </DocumentTitle>
