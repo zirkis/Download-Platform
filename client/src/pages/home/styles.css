@@ -9,3 +9,9 @@
 	padding: 20px;
 	text-align: justify;
 }
+.imgTitles
+{
+	width: 80px;
+	display: inline-block !important;
+	margin-right: 10px;
+}

@@ -42,7 +42,7 @@ class View extends Component {
                      name='Home'
                      onClick={() => {this.props.redirect('/');}}/>
           <Menu.Item active={location === '/films'}
-                     name='Films'
+                     name='Movies'
                      onClick={() => {this.props.redirect('/films');}}/>
           <Menu.Item active={location === '/series'}
                      name='Series'
