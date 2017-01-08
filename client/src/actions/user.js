@@ -56,6 +56,7 @@ export function checkAuth() {
       });
       return Promise.resolve();
     }
+    console.log(token);
     return axios({
       url: `${CONFIG['apiUrl']}/users/authenticate`,
       timeout: 20000,
@@ -64,6 +65,7 @@ export function checkAuth() {
       responseType: 'json'
     })
       .then(res => {
+        console.log(res);
         localStorage.token = res.data.accessToken;
         dispatch({
           type: CHECK_AUTH_OK,
@@ -85,3 +87,7 @@ export function logout() {
     dispatch(push(CONFIG['redirectRouteAfterLogout']));
   }
 }
+
+/*
+ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiQWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIn0sImlhdCI6MTQ4MzkwNDQ5NywiZXhwIjoxNDgzOTA4MDk3fQ.7Wp9Mgo6Hx-MUghYaw_zJtObqHan5vQMSP7y_vjodWE
+ */

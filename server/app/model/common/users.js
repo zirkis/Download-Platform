@@ -29,11 +29,12 @@ module.exports = {
   },
   actions: {
     login(email, password, token) {
-      return model.findOneAndUpdate({email, password},
-          {token}).exec();
+      return model.findOneAndUpdate({email, password}, {token}).exec();
     },
-    getUserByToken(token) {
-      return model.findOne({token}).exec();
+    getUserByToken(token, newToken) {
+      return model
+        .findOneAndUpdate({token}, {token: newToken}, {new: true})
+        .exec();
     }
   }
 };
