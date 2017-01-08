@@ -1,2 +1,4 @@
 .page {}
-.container {}
+.container {
+	padding: 30px;
+}

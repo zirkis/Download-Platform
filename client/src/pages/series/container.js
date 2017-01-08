@@ -6,7 +6,7 @@ import {querySeries} from '../../actions/series';
 
 @connect(store => {
     return {
-      films: store.films.films
+      series: store.series.series
     };
   },
   dispatch => {

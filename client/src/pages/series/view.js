@@ -16,7 +16,8 @@ class View extends Component {
             <PosterArea
               media={this.props.series}
               typeMedia='serie'
-              maxDisplay={8}
+              maxDisplay={20}
+              mediaPerColumn={5}
             />
           </div>
         </div>

@@ -11,7 +11,7 @@ const floatingLabelStyle = {
   color: fullBlack
 };
 
-const validation = values => {
+const validate = values => {
   const errors = {};
   const requiredFields = [
     'name',
@@ -33,7 +33,7 @@ const validation = values => {
 
 @reduxForm({
   form: 'add_film',
-  validation,
+  validate,
 })
 @CSSModules(styles)
 class Form extends React.Component {
