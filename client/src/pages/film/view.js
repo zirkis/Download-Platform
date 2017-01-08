@@ -19,49 +19,49 @@ class View extends Component {
         <div styleName='page'>
           <div styleName='container'>
 
-            <h1 styleName="title">{film.attributes.name}</h1>
+            <h1 styleName="title">{film.name}</h1>
             <hr/>
             <card styleName="film_poster">
-              <Image src={film.attributes.posterLink} />
+              <Image src={film.posterLink} />
             </card>
             <div styleName="film_info">
               <div>
                 <h3>Release :&nbsp;</h3>
-                <DateHelper date={film.attributes.productionDate}/>
+                <DateHelper date={film.productionDate}/>
               </div>
               <div>
                 <h3>Director :&nbsp;</h3>
-                {film.attributes.director}
+                {film.director}
               </div><br/>
               <div>
                 <h3>Actors :&nbsp;</h3>
-                {film.attributes.actors[0]}, {film.attributes.actors[1]}, {film.attributes.actors[2]}
+                {film.actors[0]}, {film.actors[1]}, {film.actors[2]}
               </div>
               <br/>
               <div>
                 <h3>Country :&nbsp;</h3>
-                {film.attributes.country}
+                {film.country}
               </div>
               <br/>
               <div>
                 <h3>Synopsis :&nbsp;</h3>
-                {film.attributes.description}
+                {film.description}
               </div>
               <br/>
               <div>
                 <h3>Length :&nbsp;</h3>
-                {film.attributes.length}min
+                {film.length}min
               </div>
               <br/>
               <div>
                 <h3>Added on :&nbsp;</h3>
-                <DateHelper date={film.attributes.addedAt}/>
+                <DateHelper date={film.addedAt}/>
               </div>
             </div>
             <hr/>
             <p styleName="download">
             </p>
-            <DownloadBar links={film.relationships.downloadLinks}/>
+            <DownloadBar links={film.downloadLinks}/>
           </div>
         </div>
       </DocumentTitle>

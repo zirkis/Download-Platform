@@ -2,6 +2,7 @@ import axios from 'axios';
 import Qs from 'qs';
 
 import CONFIG from '../../config/default.json';
+import {FilmSerializer} from '../serializers/film';
 import {
   FILM_CREATE,
   FILM_FETCH,
@@ -56,10 +57,13 @@ export function fetchFilm(_id) {
         return queryLinks(links);
       })
       .then(res => {
-        film.relationships.downloadLinks = {
-          ...film.relationships.downloadLinks,
-          data: res
+        const data = {
+          "data": film,
+          "included": res
         };
+        return FilmSerializer.deserialize(data);
+      })
+      .then(film => {
         dispatch({
           type: FILM_FULFILLED,
           payload: film

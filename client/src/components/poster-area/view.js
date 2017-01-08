@@ -16,13 +16,13 @@ class View extends Component {
         <Grid.Column key={cards.length}>
           <Link to={link}>
             <Card >
-              <Image src={media[i].attributes.posterLink} />
+              <Image src={media[i].posterLink} />
               <Card.Content>
-                <Card.Header>{media[i].attributes.name}</Card.Header>
+                <Card.Header>{media[i].name}</Card.Header>
                 <Card.Meta>
                   Added on:
                   <div>
-                    <DateHelper date={media[i].attributes.addedAt}/>
+                    <DateHelper date={media[i].addedAt}/>
                   </div>
                 </Card.Meta>
               </Card.Content>

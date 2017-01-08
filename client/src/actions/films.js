@@ -2,6 +2,7 @@ import axios from 'axios';
 import Qs from 'qs';
 
 import CONFIG from '../../config/default.json';
+import {FilmSerializer} from '../serializers/film';
 import {
   FILMS_FETCH,
   FILMS_FULFILLED,
@@ -36,7 +37,12 @@ export function queryFilms(filter) {
       responseType: 'json'
     })
       .then(res => {
-        const films = res.data.data;
+        const films = {
+          "data": res.data.data
+        };
+        return FilmSerializer.deserialize(films);
+      })
+      .then(films => {
         dispatch({
           type: FILMS_FULFILLED,
           payload: films
@@ -70,7 +76,7 @@ export function sortFilms(films) {
     }
     dispatch(sortingInProgress());
     films.sort((a, b) => {
-      return a.attributes.addedAt < b.attributes.addedAt
+      return a.addedAt < b.addedAt
     });
     dispatch({
       type: FILMS_SORTED,
