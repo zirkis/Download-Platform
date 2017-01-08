@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import View from './view';
 import {queryFilms, sortFilms} from '../../actions/films';
+import {querySeries, sortSeries} from '../../actions/series';
 
 @connect(store => {
     return {
@@ -17,6 +18,12 @@ import {queryFilms, sortFilms} from '../../actions/films';
       },
       sortFilmsActions: films => {
         return dispatch(sortFilms(films));
+      },
+      querySeriesAction: () => {
+        return dispatch(querySeries());
+      },
+      sortSeriesActions: series => {
+        return dispatch(sortSeries(series));
       }
     }
   })
@@ -31,6 +38,12 @@ class Container extends Component {
     return this.props.queryFilmsAction()
       .then(() => {
         return this.props.sortFilmsActions(this.props.films);
+      })
+      .then(() => {
+        return this.props.querySeriesAction();
+      })
+      .then(() => {
+        return this.props.sortSeriesActions(this.props.series);
       })
       .then(() => {
         this.setState({loaded: true});
