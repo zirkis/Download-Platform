@@ -12,7 +12,8 @@ class View extends Component {
                        onClick={() => {this.props.redirect('/add/film');}}>
               Add
             </Menu.Item>
-            <Menu.Item name='update_film'>
+            <Menu.Item name='update_film'
+                       onClick={() => {this.props.redirect('/update/film');}}>
               Update
             </Menu.Item>
             <Menu.Item name='remove_film'
@@ -29,10 +30,12 @@ class View extends Component {
                        onClick={() => {this.props.redirect('/add/serie');}}>
               Add
             </Menu.Item>
-            <Menu.Item name='update_serie'>
+            <Menu.Item name='update_serie'
+                       onClick={() => {this.props.redirect('/update/serie');}}>
               Update
             </Menu.Item>
-            <Menu.Item name='remove_serie'>
+            <Menu.Item name='remove_serie'
+                       onClick={() => {this.props.redirect('/remove/serie');}}>
               Remove
             </Menu.Item>
           </Menu.Menu>
@@ -44,10 +47,12 @@ class View extends Component {
                        onClick={() => {this.props.redirect('/add/episode');}}>
               Add
             </Menu.Item>
-            <Menu.Item name='update_episode'>
+            <Menu.Item name='update_episode'
+                       onClick={() => {this.props.redirect('/update/episode');}}>
               Update
             </Menu.Item>
-            <Menu.Item name='remove_episode'>
+            <Menu.Item name='remove_episode'
+                       onClick={() => {this.props.redirect('/remove/episode');}}>
               Remove
             </Menu.Item>
           </Menu.Menu>

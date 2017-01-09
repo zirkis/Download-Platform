@@ -34,6 +34,71 @@ const initSeries = {
       promisesSerie.push(serie.save());
     });
 
+    series.push(new Serie({
+      name: 'Arrow',
+      description: `The new adventures of Green Arrow / Oliver Queen, 
+      ultra-effective fighter from the world of DC Comics and above all archer 
+      with crazy talent, which belongs to the Justice League. Disappeared at sea
+       with his father and his girlfriend, he is found alive 5 years later on an
+        island near the Chinese coasts. But he changed: he is strong, courageous
+         and determined to rid Starling City of his criminals ...`,
+      actors: [
+        'Stephen Amell',
+        'David Ramsey',
+        'Willa Holland'
+      ],
+      posterLink: 'http://screencrush.com/442/files/2013/08/'+
+      'arrow_season2_poster.jpg?cdnnode=1',
+      productionDate: new Date(2012,4),
+      director: 'Andrew Kreisberg',
+      country: 'USA',
+      episodes: [episodes[0]._id],
+    }));
+
+    series.push(new Serie({
+      name: 'Heroes',
+      description: `Across the globe, a number of seemingly ordinary individuals
+       appear to be endowed with extraordinary abilities: cellular regeneration,
+        teleportation, telepathy ... They do not know what is happening to them,
+         nor the repercussions that all this could have. They still do not know 
+         that they are part of an evolution that will change the world forever!`
+      ,
+      actors: [
+        'Milo Ventimiglia',
+        'Greg Grunberg',
+        'Hayden Panettiere'
+      ],
+      posterLink: 'http://lowdownradio.com/wp-content/uploads/2010/05/'+
+      'heroes-poster.jpg',
+      productionDate: new Date(2006,8),
+      director: 'Tim Kring',
+      country: 'USA',
+      episodes: [episodes[0]._id],
+    }));
+
+    series.push(new Serie({
+      name: 'The Walking Dead',
+      description: `After an apocalypse that transformed most of the population 
+      into zombies, a group of men and women led by officer Rick Grimes tries to
+       survive ... Together they will have to deal with this new World become 
+       unrecognizable, through their journey in the deep South of the United 
+       States.`,
+      actors: [
+        'Andrew Lincoln',
+        'Steven Yeun',
+        'Chandler Riggs'
+      ],
+      posterLink: 'http://www.moviesonline.ca/wp-content/uploads/2010/09/'+
+      'TWD_1-SHEET_WEB.jpg',
+      productionDate: new Date(2010,5),
+      director: 'Robert Kirkman',
+      country: 'USA',
+      episodes: [episodes[0]._id],
+    }));
+
+    series.forEach(serie => {
+      promisesSerie.push(serie.save());
+    });
     return Promise.all(promisesSerie);
   }
 };
