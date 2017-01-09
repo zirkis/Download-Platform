@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
-import {Table} from 'semantic-ui-react'
-import {Button} from 'semantic-ui-react';
+import {Table, Button} from 'semantic-ui-react';
 
 import styles from './styles.css';
 
@@ -17,7 +16,11 @@ class View extends Component {
           <Table.Cell>{link.quality}</Table.Cell>
           <Table.Cell>{link.host}</Table.Cell>
           <Table.Cell>{link.uploader}</Table.Cell>
-          <Table.Cell><Button color='red' size='small'>DOWNLOAD</Button></Table.Cell>
+          <Table.Cell>
+            <a href={link.link}>
+              <Button color='red' size='small'>DOWNLOAD</Button>
+            </a>
+          </Table.Cell>
         </Table.Row>
       );
     });

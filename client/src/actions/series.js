@@ -43,7 +43,6 @@ export function querySeries(filter) {
         return SerieSerializer.deserialize(series);
       })
       .then(series => {
-        console.log(series);
         dispatch({
           type: SERIES_FULFILLED,
           payload: series
@@ -77,8 +76,8 @@ export function sortSeries(series) {
     }
     dispatch(sortingInProgress());
     series.sort((a, b) => {
-      return a.addedAt < b.addedAt
-    });
+      return (a.addedAt >= b.addedAt)
+    }).reverse();
     dispatch({
       type: SERIES_SORTED,
       payload: series

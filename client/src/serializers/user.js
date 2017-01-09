@@ -7,6 +7,7 @@ _Deserializer.deserialize = Promise.promisify(_Deserializer.deserialize);
 export const UserSerializer = {
   serialize(data) {
     return new Serializer('users', {
+      keyForAttribute: 'camelCase',
       attributes: [
         'email',
         'password'

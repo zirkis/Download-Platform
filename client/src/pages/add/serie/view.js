@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
 
 import styles from './styles.css';
+import AddSerieForm from '../../../forms/add/serie/form';
 
 @CSSModules(styles)
 class View extends Component {
   render() {
+    const {onSubmit} = this.props;
     return (
-      <div>
-
+      <div styleName='container'>
+        <AddSerieForm onSubmit={onSubmit}/>
       </div>
     );
   }

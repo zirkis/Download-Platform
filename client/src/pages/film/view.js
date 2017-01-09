@@ -12,7 +12,7 @@ class View extends Component {
   render() {
     const film = this.props.film;
     if (!film) {
-      return 'COuCOU';
+      return null;
     }
     return (
       <DocumentTitle title='Film'>

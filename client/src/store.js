@@ -7,7 +7,7 @@ import {routerMiddleware} from 'react-router-redux';
 import reducer from './reducers';
 
 const middleware = applyMiddleware(
-  // createLogger(),
+  // createLogger({collapsed: true}),
   routerMiddleware(browserHistory),
   thunk
 );

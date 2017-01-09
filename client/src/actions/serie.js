@@ -78,7 +78,6 @@ export function fetchSerie(_id) {
         return SerieSerializer.deserialize(data);
       })
       .then(serie => {
-        console.log(serie);
         dispatch({
           type: SERIE_FULFILLED,
           payload: serie

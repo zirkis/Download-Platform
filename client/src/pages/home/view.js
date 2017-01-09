@@ -52,7 +52,8 @@ class View extends Component {
               </Grid.Column>
               <Grid.Column width={10}>
                 <h2>
-                  <Image styleName="imgTitles" src='http://s3.amazonaws.com/libapps/accounts/89359/images/film-reel-and-clapperboard.jpg'/>
+                  <Image styleName="imgTitles"
+                         src='http://s3.amazonaws.com/libapps/accounts/89359/images/film-reel-and-clapperboard.jpg'/>
                   Latest Movies
                 </h2>
                 <PosterArea
@@ -62,7 +63,8 @@ class View extends Component {
                 />
                 <hr/>
                 <h2>
-                  <Image styleName="imgTitles" src='http://iip.lu/wp-content/uploads/sites/156/2016/04/15700070751_88d83d38fd_o.png'/>
+                  <Image styleName="imgTitles"
+                         src='http://iip.lu/wp-content/uploads/sites/156/2016/04/15700070751_88d83d38fd_o.png'/>
                   Latest Series
                 </h2>
                 <PosterArea

@@ -5,6 +5,8 @@ import CONFIG from '../../config/default.json';
 import {FilmSerializer} from '../serializers/film';
 import {
   FILM_CREATE,
+  FILM_CREATE_SUCCESS,
+  FILM_CREATE_ERROR,
   FILM_FETCH,
   FILM_FULFILLED,
   FILM_ERROR
@@ -18,8 +20,30 @@ function filmCreate() {
 }
 export function createFilm(film) {
   return dispatch => {
+    film.actors = film.actors.split(/\r?\n/);
+    const data = FilmSerializer.serialize(film);
+    delete data.data.id;
     dispatch(filmCreate());
-    return Promise.resolve(film);
+    return axios({
+      method: 'post',
+      url: `${CONFIG['apiUrl']}/films`,
+      headers: {
+        'Content-Type': 'application/vnd.api+json'
+      },
+      data
+    })
+      .then(() => {
+        dispatch({
+          type: FILM_CREATE_SUCCESS,
+          payload: film
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: FILM_CREATE_ERROR,
+          payload: err.error
+        });
+      });
   }
 }
 
@@ -35,7 +59,6 @@ export function fetchFilm(_id) {
     dispatch(filmFetch());
     return axios({
       url: `${CONFIG['apiUrl']}/films`,
-      timeout: 20000,
       method: 'get',
       headers: {
         'Content-Type': 'application/json'

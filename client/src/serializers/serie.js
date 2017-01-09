@@ -7,6 +7,7 @@ _Deserializer.deserialize = Promise.promisify(_Deserializer.deserialize);
 export const SerieSerializer = {
   serialize(data) {
     return new Serializer('series', {
+      keyForAttribute: 'camelCase',
       attributes: [
         'name',
         'description',
@@ -16,7 +17,7 @@ export const SerieSerializer = {
         'actors',
         'country',
         'addedAt',
-        'episodes'
+        'list-episodes'
       ]
     }).serialize(data);
   },

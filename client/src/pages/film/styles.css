@@ -1,8 +1,9 @@
 .page {}
 .container {
-	width: 800px;
+	width: 850px;
 	margin: 0 auto;
 	margin-top: 10px;
+	margin-bottom: 50px;
 	padding: 15px;
 }
 .title {

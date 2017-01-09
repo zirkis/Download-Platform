@@ -7,6 +7,7 @@ _Deserializer.deserialize = Promise.promisify(_Deserializer.deserialize);
 export const LinkSerializer = {
   serialize(data) {
     return new Serializer('links', {
+      keyForAttribute: 'camelCase',
       attributes: [
         'host',
         'link',

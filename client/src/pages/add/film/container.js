@@ -8,7 +8,6 @@ import {createFilm} from '../../../actions/film';
   dispatch => {
     return {
       createFilm: film => {
-        console.log(film);
         dispatch(createFilm(film));
       }
     }

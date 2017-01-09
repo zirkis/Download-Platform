@@ -76,8 +76,8 @@ export function sortFilms(films) {
     }
     dispatch(sortingInProgress());
     films.sort((a, b) => {
-      return a.addedAt < b.addedAt
-    });
+      return (a.addedAt >= b.addedAt)
+    }).reverse();
     dispatch({
       type: FILMS_SORTED,
       payload: films

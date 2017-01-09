@@ -9,6 +9,7 @@ _Deserializer.deserialize = Promise.promisify(_Deserializer.deserialize);
 export const FilmSerializer = {
   serialize(data) {
     return new Serializer('films', {
+      keyForAttribute: 'camelCase',
       attributes: [
         'name',
         'description',
