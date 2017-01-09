@@ -9,6 +9,8 @@ import {
   SERIE_FULFILLED,
   SERIE_ERROR
 } from '../constants/serie';
+import {queryLinks} from './links';
+import {queryEpisodes} from './episodes';
 
 function serieCreate() {
   return {
@@ -29,6 +31,7 @@ function serieFetch() {
 }
 export function fetchSerie(_id) {
   let serie = null;
+  let included = [];
   const filter = {simple: {_id}};
   return dispatch => {
     dispatch(serieFetch());
@@ -50,12 +53,32 @@ export function fetchSerie(_id) {
       .then(res => {
         const series = res.data.data;
         serie = series[0];
+        const episodesId = serie.relationships.episodes.data.map(episode => {
+          return episode.id;
+        });
+        return queryEpisodes(episodesId);
+      })
+      .then(episodes => {
+        const linksId = [];
+        episodes.forEach(episode => {
+          const lksId = episode.relationships.downloadLinks.data.map(link => {
+            return link.id;
+          });
+          linksId.push(lksId);
+        });
+        included = included.concat(episodes);
+        return queryLinks(linksId);
+      })
+      .then(links => {
+        included = included.concat(links);
         const data = {
-          "data": serie
+          "data": serie,
+          "included": included
         };
         return SerieSerializer.deserialize(data);
       })
       .then(serie => {
+        console.log(serie);
         dispatch({
           type: SERIE_FULFILLED,
           payload: serie

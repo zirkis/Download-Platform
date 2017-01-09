@@ -33,9 +33,7 @@ class Container extends Component {
     if (!this.state.loaded) {
       return null;
     }
-    return <View
-      series={this.props.series}
-    />
+    return <View series={this.props.series}/>
   }
 }
 

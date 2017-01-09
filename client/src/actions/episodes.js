@@ -4,13 +4,13 @@ import Promise from 'bluebird';
 
 import CONFIG from '../../config/default.json';
 
-export function queryLinks(links) {
-  if (!links || !links.length) {
+export function queryEpisodes(episodesId) {
+  if (!episodesId || !episodesId.length) {
     return Promise.resolve(null);
   }
-  const filter = {_id: links};
+  const filter = {_id: episodesId};
   return axios({
-    url: `${CONFIG['apiUrl']}/links`,
+    url: `${CONFIG['apiUrl']}/episodes`,
     timeout: 20000,
     method: 'get',
     headers: {

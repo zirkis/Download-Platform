@@ -24,15 +24,11 @@ class Container extends Component {
     };
   }
   componentWillMount() {
-    if (!this.props.routeParams || !this.props.routeParams.id) {
-      return; // TODO ERROR MESSAGE
-    }
     const id = this.props.routeParams.id;
     return this.props.fetchSerieAction(id)
       .then(() => {
-        console.log(this.props);
         this.setState({loaded: true});
-      })
+      });
   }
   render() {
     if (!this.state.loaded) {
