@@ -15,3 +15,9 @@
 	display: inline-block !important;
 	margin-right: 10px;
 }
+.select-choice-area {
+	text-align: center;
+}
+.checkbox {
+	margin-right: 25px;
+}

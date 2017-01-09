@@ -29,7 +29,7 @@ class Container extends Component {
     };
   }
   componentWillMount() {
-    const id = this.props.routeParams.search;
+    // const search = this.props.routeParams.search;
     return this.props.queryFilmsAction()
       .then(() => {
         return this.props.querySeriesAction();

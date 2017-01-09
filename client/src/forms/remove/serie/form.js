@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {TextField, DatePicker} from 'redux-form-material-ui';
+import {TextField} from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import {fullBlack} from 'material-ui/styles/colors';
 import CSSModules from 'react-css-modules';
