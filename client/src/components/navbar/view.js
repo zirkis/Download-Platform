@@ -1,11 +1,27 @@
 import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
-import {Input, Menu, Button} from 'semantic-ui-react';
+import {Input, Menu, Button, Icon} from 'semantic-ui-react';
 
 import styles from './styles.css';
 
 @CSSModules(styles)
 class View extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ''
+    };
+  }
+  updateInputValue(evt) {
+    this.setState({
+      search: evt.target.value
+    });
+  }
+  search() {
+    if (this.state.search) {
+      this.props.redirect(`/search/${this.state.search}`);
+    }
+  }
   render() {
     const location = this.props.location;
     const isAuthenticated = this.props.isAuthenticated;
@@ -50,7 +66,15 @@ class View extends Component {
           {profile}
           <Menu.Menu position='right'>
             <Menu.Item>
-              <Input action={{ icon: 'search' }} placeholder='Search...' />
+              <Input
+                action={
+                  <Button icon onClick={() => {this.search()}}>
+                    <Icon name='search'/>
+                  </Button>
+                }
+                value={this.state.inputValue}
+                onChange={evt => {this.updateInputValue(evt)}}
+                placeholder='Search...'/>
             </Menu.Item>
             {button}
           </Menu.Menu>

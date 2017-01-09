@@ -12,6 +12,7 @@ import RessourceLayout from './layouts/ressource/container';
 
 // Public pages
 import Home from './pages/home/container';
+import Search from './pages/search/container';
 import Films from './pages/films/container';
 import Film from './pages/film/container';
 import Series from './pages/series/container';
@@ -37,6 +38,7 @@ export default(
     <Router history={history}>
       <Route path="/" component={AppLayout}>
         <IndexRoute component={Home} />
+        <Route path="search/:search" component={Search}/>
         <Route path="films" component={Films}/>
         <Route path="film/:id" component={Film} />
         <Route path="series" component={Series}/>
