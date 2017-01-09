@@ -2,6 +2,7 @@ import axios from 'axios';
 import Qs from 'qs';
 
 import CONFIG from '../../config/default.json';
+import {SerieSerializer} from '../serializers/serie';
 import {
   SERIE_CREATE,
   SERIE_FETCH,
@@ -49,6 +50,12 @@ export function fetchSerie(_id) {
       .then(res => {
         const series = res.data.data;
         serie = series[0];
+        const data = {
+          "data": serie
+        };
+        return SerieSerializer.deserialize(data);
+      })
+      .then(serie => {
         dispatch({
           type: SERIE_FULFILLED,
           payload: serie

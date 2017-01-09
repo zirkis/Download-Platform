@@ -8,15 +8,15 @@ import styles from './styles.css';
 @CSSModules(styles)
 class View extends Component {
   render() {
-    const links = this.props.links.data;
+    const links = this.props.links;
     const downloadLinks = [];
     links.forEach(link => {
       downloadLinks.push(
         <Table.Row key={downloadLinks.length}>
-          <Table.Cell>{link.attributes.language}</Table.Cell>
-          <Table.Cell>{link.attributes.quality}</Table.Cell>
-          <Table.Cell>{link.attributes.host}</Table.Cell>
-          <Table.Cell>{link.attributes.uploader}</Table.Cell>
+          <Table.Cell>{link.language}</Table.Cell>
+          <Table.Cell>{link.quality}</Table.Cell>
+          <Table.Cell>{link.host}</Table.Cell>
+          <Table.Cell>{link.uploader}</Table.Cell>
           <Table.Cell><Button color='red' size='small'>DOWNLOAD</Button></Table.Cell>
         </Table.Row>
       );

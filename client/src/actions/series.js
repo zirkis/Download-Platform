@@ -2,6 +2,7 @@ import axios from 'axios';
 import Qs from 'qs';
 
 import CONFIG from '../../config/default.json';
+import {SerieSerializer} from '../serializers/serie';
 import {
   SERIES_FETCH,
   SERIES_FULFILLED,
@@ -36,7 +37,13 @@ export function querySeries(filter) {
       responseType: 'json'
     })
       .then(res => {
-        const series = res.data.data;
+        const series = {
+          "data": res.data.data
+        };
+        return SerieSerializer.deserialize(series);
+      })
+      .then(series => {
+        console.log(series);
         dispatch({
           type: SERIES_FULFILLED,
           payload: series
@@ -70,7 +77,7 @@ export function sortSeries(series) {
     }
     dispatch(sortingInProgress());
     series.sort((a, b) => {
-      return a.attributes.addedAt < b.attributes.addedAt
+      return a.addedAt < b.addedAt
     });
     dispatch({
       type: SERIES_SORTED,
