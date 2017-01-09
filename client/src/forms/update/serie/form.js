@@ -14,11 +14,7 @@ const floatingLabelStyle = {
 const validate = values => {
   const errors = {};
   const requiredFields = [
-    'name',
-    'serie',
-    'saison',
-    'number',
-    'description'
+    'ref'
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -29,7 +25,7 @@ const validate = values => {
 };
 
 @reduxForm({
-  form: 'add_episode',
+  form: 'add_serie',
   validate,
 })
 @CSSModules(styles)
@@ -39,41 +35,65 @@ class Form extends React.Component {
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
+          <Field name="ref" component={TextField} type="text"
+                 floatingLabelText="Name"
+                 floatingLabelStyle={floatingLabelStyle}
+          />
+        </div>
+        <div>
           <Field name="name" component={TextField} type="text"
-                 floatingLabelText="Title"
-                 floatingLabelStyle={floatingLabelStyle}
-          />
-        </div>
-        <div>
-          <Field name="serie" component={TextField} type="text"
-                 floatingLabelText="Serie"
-                 floatingLabelStyle={floatingLabelStyle}
-          />
-        </div>
-        <div>
-          <Field name="saison" component={TextField} type="number"
-                 floatingLabelText="Saison"
-                 floatingLabelStyle={floatingLabelStyle}
-          />
-        </div>
-        <div>
-          <Field name="number" component={TextField} type="number"
-                 floatingLabelText="Number"
+                 floatingLabelText="New Name"
                  floatingLabelStyle={floatingLabelStyle}
           />
         </div>
         <div>
           <Field name="description" component={TextField} type="text"
-                 floatingLabelText="Description"
+                 floatingLabelText="New Description"
                  floatingLabelStyle={floatingLabelStyle}
                  multiLine={true}
                  rows={2}
                  rowsMax={5}
           />
         </div>
+        <div>
+          <Field name="posterLink" component={TextField} type="text"
+                 floatingLabelText="New Poster link"
+                 floatingLabelStyle={floatingLabelStyle}
+          />
+        </div>
+        <div>
+          <Field name="productionDate" component={DatePicker}
+                 floatingLabelText="New Production date"
+                 floatingLabelStyle={floatingLabelStyle}
+                 disableYearSelection={false}
+                 format={(value, name) => value === '' ? null : value}
+                 mode="landscape"
+          />
+        </div>
+        <div>
+          <Field name="actors" component={TextField} type="text"
+                 floatingLabelText="New Actors"
+                 floatingLabelStyle={floatingLabelStyle}
+                 multiLine={true}
+                 rows={2}
+                 rowsMax={5}
+          />
+        </div>
+        <div>
+          <Field name="director" component={TextField} type="text"
+                 floatingLabelText="New Director"
+                 floatingLabelStyle={floatingLabelStyle}
+          />
+        </div>
+        <div>
+          <Field name="country" component={TextField} type="text"
+                 floatingLabelText="New Country"
+                 floatingLabelStyle={floatingLabelStyle}
+          />
+        </div>
         <div styleName='button'>
           <RaisedButton
-            label='Create'
+            label='Update'
             style={ {'width': '50%'} }
             type='submit'
           />

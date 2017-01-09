@@ -14,11 +14,8 @@ const floatingLabelStyle = {
 const validate = values => {
   const errors = {};
   const requiredFields = [
-    'name',
-    'serie',
-    'saison',
-    'number',
-    'description'
+    'ref',
+    'serie_ref'
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -39,32 +36,44 @@ class Form extends React.Component {
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
-          <Field name="name" component={TextField} type="text"
+          <Field name="ref" component={TextField} type="text"
                  floatingLabelText="Title"
                  floatingLabelStyle={floatingLabelStyle}
           />
         </div>
         <div>
-          <Field name="serie" component={TextField} type="text"
+          <Field name="serie_ref" component={TextField} type="text"
                  floatingLabelText="Serie"
                  floatingLabelStyle={floatingLabelStyle}
           />
         </div>
         <div>
+          <Field name="name" component={TextField} type="text"
+                 floatingLabelText="New Title"
+                 floatingLabelStyle={floatingLabelStyle}
+          />
+        </div>
+        <div>
+          <Field name="serie" component={TextField} type="text"
+                 floatingLabelText="New Serie"
+                 floatingLabelStyle={floatingLabelStyle}
+          />
+        </div>
+        <div>
           <Field name="saison" component={TextField} type="number"
-                 floatingLabelText="Saison"
+                 floatingLabelText="New Season"
                  floatingLabelStyle={floatingLabelStyle}
           />
         </div>
         <div>
           <Field name="number" component={TextField} type="number"
-                 floatingLabelText="Number"
+                 floatingLabelText="New Number"
                  floatingLabelStyle={floatingLabelStyle}
           />
         </div>
         <div>
           <Field name="description" component={TextField} type="text"
-                 floatingLabelText="Description"
+                 floatingLabelText="New Description"
                  floatingLabelStyle={floatingLabelStyle}
                  multiLine={true}
                  rows={2}
@@ -73,7 +82,7 @@ class Form extends React.Component {
         </div>
         <div styleName='button'>
           <RaisedButton
-            label='Create'
+            label='Update'
             style={ {'width': '50%'} }
             type='submit'
           />

@@ -26,7 +26,13 @@ import AddSerie from './pages/add/serie/container';
 import AddEpisode from './pages/add/episode/container';
 import AddLink from './pages/add/link/container';
 
+import UpdateFilm from './pages/update/film/container';
+import UpdateSerie from './pages/update/serie/container';
+import UpdateEpisode from './pages/update/episode/container';
+
 import RemoveFilm from './pages/remove/film/container';
+import RemoveSerie from './pages/remove/serie/container';
+import RemoveEpisode from './pages/remove/episode/container';
 
 import _404 from './pages/404/view';
 
@@ -50,8 +56,15 @@ export default(
             <Route path="episode" component={AddEpisode}/>
             <Route path="link" component={AddLink}/>
           </Route>
+          <Route path="update" component={RessourceLayout}>
+            <Route path="film" component={UpdateFilm}/>
+            <Route path="serie" component={UpdateSerie}/>
+            <Route path="episode" component={UpdateEpisode}/>
+          </Route>
           <Route path="remove" component={RessourceLayout}>
             <Route path="film" component={RemoveFilm}/>
+            <Route path="serie" component={RemoveSerie}/>
+            <Route path="episode" component={RemoveEpisode}/>
           </Route>
         </Route>
         <Route path="*" component={_404}/>
