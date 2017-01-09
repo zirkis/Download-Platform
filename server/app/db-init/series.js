@@ -16,9 +16,7 @@ const initSeries = {
        only one solution: to use his chemistry knowledge to make and sell
        crystal meth, a synthetic drug that pays a lot. He proposes to Jesse,
        one of his former pupils become a small dealer of second zone, to team
-       up with him. The improvised duo set up a mobile lab in an old camper van.
-       This unexpected association will lead them into a series of comic and
-       pathetic vicissitudes.`,
+       up with him.`,
       actors: [
         'Bryan Cranston',
         'Aaron Paul',

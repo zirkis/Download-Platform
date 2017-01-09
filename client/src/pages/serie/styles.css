@@ -8,3 +8,19 @@
 .title {
 	text-align: center;
 }
+.info
+{
+	width: 300px;
+	text-align: justify;
+	font-size: 1.3em !important;
+}
+.serie_poster, .info
+{
+	display: inline-block !important;
+	vertical-align: middle;
+	margin: 20px;
+}
+.serie_poster
+{
+	width: 390px;
+}
