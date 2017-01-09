@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import {Grid, Image, Card} from 'semantic-ui-react';
 
 import DateHelper from '../../helpers/date';
+import NameHelper from '../../helpers/name';
 
 class View extends Component {
   render() {
@@ -18,7 +19,9 @@ class View extends Component {
             <Card >
               <Image src={media[i].posterLink} />
               <Card.Content>
-                <Card.Header>{media[i].name}</Card.Header>
+                <Card.Header>
+                  <NameHelper name={media[i].name}/>
+                </Card.Header>
                 <Card.Meta>
                   Added on:
                   <div>

@@ -20,9 +20,13 @@ function filmCreate() {
 }
 export function createFilm(film) {
   return dispatch => {
-    film.actors = film.actors.split(/\r?\n/);
-    const data = FilmSerializer.serialize(film);
+    const filmRecord = {
+      ...film,
+      actors: film.actors.split(/\r?\n/)
+    };
+    const data = FilmSerializer.serialize(filmRecord);
     delete data.data.id;
+    console.log(data);
     dispatch(filmCreate());
     return axios({
       method: 'post',
