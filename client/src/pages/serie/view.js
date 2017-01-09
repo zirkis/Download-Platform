@@ -11,7 +11,6 @@ import ListEpisodes from '../../components/list-episodes/container';
 class View extends Component {
   render() {
     const serie = this.props.serie;
-    console.log(serie);
     return (
       <DocumentTitle title='Serie'>
         <div styleName='page'>

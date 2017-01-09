@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
-import {Table, Button, Header, Image, Modal} from 'semantic-ui-react';
+import {Table, Button, Modal} from 'semantic-ui-react';
 
 import DownloadBar from '../../components/downloadbar/container';
 import styles from './styles.css';
@@ -46,9 +46,7 @@ class View extends Component {
                 trigger={<Button color='red' size='small'>DOWNLOAD</Button>}>
                 <Modal.Header>Download</Modal.Header>
                 <Modal.Content>
-                  <Modal.Description>
-                    <DownloadBar links={episode.downloadLinks}/>
-                  </Modal.Description>
+                  <DownloadBar links={episode.downloadLinks}/>
                 </Modal.Content>
               </Modal>
 

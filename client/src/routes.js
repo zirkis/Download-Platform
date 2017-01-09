@@ -8,7 +8,7 @@ import store from './store';
 // Layout
 import AppLayout from './layouts/app/container';
 import ProtectedLayout from './layouts/protected/container';
-import AddLayout from './layouts/add/container';
+import RessourceLayout from './layouts/ressource/container';
 
 // Public pages
 import Home from './pages/home/container';
@@ -20,10 +20,13 @@ import Login from './pages/login/container';
 
 // Private pages
 import Profile from './pages/profile/container';
+
 import AddFilm from './pages/add/film/container';
 import AddSerie from './pages/add/serie/container';
 import AddEpisode from './pages/add/episode/container';
 import AddLink from './pages/add/link/container';
+
+import RemoveFilm from './pages/remove/film/container';
 
 import _404 from './pages/404/view';
 
@@ -41,11 +44,14 @@ export default(
         <Route path="login" component={Login}/>
         <Route component={ProtectedLayout}>
           <Route path="profile" component={Profile}/>
-          <Route path="add" component={AddLayout}>
+          <Route path="add" component={RessourceLayout}>
             <Route path="film" component={AddFilm}/>
             <Route path="serie" component={AddSerie}/>
             <Route path="episode" component={AddEpisode}/>
             <Route path="link" component={AddLink}/>
+          </Route>
+          <Route path="remove" component={RessourceLayout}>
+            <Route path="film" component={RemoveFilm}/>
           </Route>
         </Route>
         <Route path="*" component={_404}/>
