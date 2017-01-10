@@ -26,7 +26,7 @@ class View extends Component {
     let films = null;
     let series = null;
     let separator = null;
-    if (this.state.showFilms) {
+    if (this.state.showFilms && this.props.films.length) {
       films = (
         <div>
           <h2>
@@ -42,7 +42,7 @@ class View extends Component {
         </div>
       )
     }
-    if (this.state.showSeries) {
+    if (this.state.showSeries && this.props.series.length) {
       series = (
         <div>
           <h2>
@@ -64,7 +64,7 @@ class View extends Component {
     return (
       <DocumentTitle title='Home'>
         <div styleName='page'>
-          <h1 styleName="center">Results</h1>
+          <h1 styleName="center">Results for: {this.props.search}</h1>
           <Message floating>
             <div styleName="select-choice-area">
               <Checkbox toggle styleName="checkbox"

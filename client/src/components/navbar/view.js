@@ -19,6 +19,7 @@ class View extends Component {
   }
   search() {
     if (this.state.search) {
+      this.setState({search: ''});
       this.props.redirect(`/search/${this.state.search}`);
     }
   }
@@ -72,7 +73,7 @@ class View extends Component {
                     <Icon name='search'/>
                   </Button>
                 }
-                value={this.state.inputValue}
+                value={this.state.search}
                 onChange={evt => {this.updateInputValue(evt)}}
                 placeholder='Search...'/>
             </Menu.Item>

@@ -23,11 +23,7 @@ export function queryFilms(filter) {
     dispatch(filmsFetch());
     return axios({
       url: `${CONFIG['apiUrl']}/films`,
-      timeout: 20000,
       method: 'get',
-      headers: {
-        'Content-Type': 'application/json'
-      },
       params: {
         filter
       },
@@ -47,6 +43,7 @@ export function queryFilms(filter) {
           type: FILMS_FULFILLED,
           payload: films
         });
+        return films;
       })
       .catch(err => {
         dispatch({

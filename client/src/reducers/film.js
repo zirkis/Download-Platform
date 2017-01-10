@@ -4,7 +4,8 @@ import {
   FILM_CREATE_ERROR,
   FILM_FETCH,
   FILM_FULFILLED,
-  FILM_ERROR
+  FILM_ERROR,
+  FILM_RESET
 } from '../constants/film';
 
 const initialState = {
@@ -57,9 +58,13 @@ const film = (state = initialState, action) => {
     case FILM_ERROR: {
       return {
         ...state,
+        film: null,
         isFetching: false,
         error: action.payload
       };
+    }
+    case FILM_RESET: {
+      return initialState;
     }
     default:
       return {...state};

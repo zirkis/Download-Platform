@@ -9,7 +9,8 @@ import {
   FILM_CREATE_ERROR,
   FILM_FETCH,
   FILM_FULFILLED,
-  FILM_ERROR
+  FILM_ERROR,
+  FILM_RESET
 } from '../constants/film';
 import {queryLinks} from './links';
 
@@ -18,6 +19,7 @@ function filmCreate() {
     type: FILM_CREATE
   }
 }
+
 export function createFilm(film) {
   return dispatch => {
     const filmRecord = {
@@ -26,7 +28,6 @@ export function createFilm(film) {
     };
     const data = FilmSerializer.serialize(filmRecord);
     delete data.data.id;
-    console.log(data);
     dispatch(filmCreate());
     return axios({
       method: 'post',
@@ -56,10 +57,10 @@ function filmFetch() {
     type: FILM_FETCH
   }
 }
-export function fetchFilm(_id) {
-  let film = null;
-  const filter = {simple: {_id}};
+
+export function fetchFilm(filter) {
   return dispatch => {
+    let film = null;
     dispatch(filmFetch());
     return axios({
       url: `${CONFIG['apiUrl']}/films`,
@@ -77,30 +78,41 @@ export function fetchFilm(_id) {
     })
       .then(res => {
         const films = res.data.data;
+        if (!films.length) {
+          throw new Error('No film');
+        }
         film = films[0];
         const links = film.relationships.downloadLinks.data.map(link => {
           return link.id;
         });
         return queryLinks(links);
       })
-      .then(res => {
+      .then(links => {
         const data = {
           "data": film,
-          "included": res
+          "included": links
         };
         return FilmSerializer.deserialize(data);
       })
-      .then(film => {
+      .then(filmDeserialized => {
         dispatch({
           type: FILM_FULFILLED,
-          payload: film
+          payload: filmDeserialized
         });
+        return filmDeserialized;
       })
       .catch(err => {
         dispatch({
           type: FILM_ERROR,
           payload: err.error
         });
+        return null;
       });
+  }
+}
+
+export function resetFilm() {
+  return {
+    type: FILM_RESET
   }
 }

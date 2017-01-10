@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {fetchFilm} from '../../actions/film';
+import {fetchFilm, resetFilm} from '../../actions/film';
 
 @connect(store => {
     return {
@@ -13,6 +13,9 @@ import {fetchFilm} from '../../actions/film';
     return {
       fetchFilm: id => {
         return dispatch(fetchFilm(id));
+      },
+      resetFilmAction: () => {
+        dispatch(resetFilm());
       }
     }
   })
@@ -25,7 +28,8 @@ class Container extends Component {
   }
   componentWillMount() {
     const id = this.props.routeParams.id;
-    return this.props.fetchFilm(id)
+    const filter = {simple: {_id: id}};
+    return this.props.fetchFilm(filter)
       .then(() => {
         this.setState({loaded: true});
       })
@@ -37,6 +41,9 @@ class Container extends Component {
     return (
       <View film={this.props.film}/>
     );
+  }
+  componentWillUnmount() {
+    this.props.resetFilmAction();
   }
 }
 

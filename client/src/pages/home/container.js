@@ -35,7 +35,7 @@ class Container extends Component {
     };
   }
   componentWillMount() {
-    return this.props.queryFilmsAction()
+    this.props.queryFilmsAction()
       .then(() => {
         return this.props.sortFilmsActions(this.props.films);
       })

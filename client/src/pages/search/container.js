@@ -13,11 +13,27 @@ import {querySeries} from '../../actions/series';
   },
   dispatch => {
     return {
-      queryFilmsAction: () => {
-        return dispatch(queryFilms());
+      queryFilmsAction: search => {
+        const filter = {
+          simple: {
+            name: {
+              $regex: `.*${search}.*`,
+              $options: 'i'
+            }
+          }
+        };
+        return dispatch(queryFilms(filter));
       },
-      querySeriesAction: () => {
-        return dispatch(querySeries());
+      querySeriesAction: search => {
+        const filter = {
+          simple: {
+            name: {
+              $regex: `.*${search}.*`,
+              $options: 'i'
+            }
+          }
+        };
+        return dispatch(querySeries(filter));
       }
     }
   })
@@ -28,11 +44,22 @@ class Container extends Component {
       loaded: false
     };
   }
+  componentWillReceiveProps(nextProps) {
+    const lastSearch = this.props.routeParams.search;
+    const newSearch = nextProps.routeParams.search;
+    if (this.state.loaded && lastSearch !== newSearch) {
+      this.setState({loaded: false});
+      this._loadMedia(newSearch);
+    }
+  }
   componentWillMount() {
-    // const search = this.props.routeParams.search;
-    return this.props.queryFilmsAction()
+    const search = this.props.routeParams.search;
+    this._loadMedia(search);
+  }
+  _loadMedia(search) {
+    return this.props.queryFilmsAction(search)
       .then(() => {
-        return this.props.querySeriesAction();
+        return this.props.querySeriesAction(search);
       })
       .then(() => {
         this.setState({loaded: true});
@@ -42,10 +69,16 @@ class Container extends Component {
     if (!this.state.loaded) {
       return null;
     }
-    return <View
-      films={this.props.films}
-      series={this.props.series}
-    />
+    return (
+      <div key={this.props.routeParams.search}>
+        <View
+          films={this.props.films}
+          search={this.props.routeParams.search}
+          series={this.props.series}
+        />
+      </div>
+
+    )
   }
 }
 

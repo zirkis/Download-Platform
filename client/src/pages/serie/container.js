@@ -38,6 +38,9 @@ class Container extends Component {
       <View serie={this.props.serie}/>
     );
   }
+  componentWillUnmount() {
+
+  }
 }
 
 export default Container;

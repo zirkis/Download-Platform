@@ -5,3 +5,5 @@ export const FILM_CREATE_ERROR = 'FILM_CREATE_ERROR';
 export const FILM_FETCH = 'FILM_FETCH';
 export const FILM_FULFILLED = 'FILM_FULFILLED';
 export const FILM_ERROR = 'FILM_ERROR';
+
+export const FILM_RESET = 'FILM_RESET';
