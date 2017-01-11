@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import View from './view';
-import {fetchSerie} from '../../actions/serie';
+
+import Form from './form';
+import {queryFilms} from '../../../actions/films';
 
 @connect(store => {
     return {
-      serie: store.serie.serie
-    };
+      films: store.films.films
+    }
   },
   dispatch => {
     return {
-      fetchSerieAction: id => {
-        return dispatch(fetchSerie(id));
+      queryFilmsAction: () => {
+        return dispatch(queryFilms());
       }
-    }
+    };
   })
 class Container extends Component {
   constructor(props) {
@@ -23,8 +24,7 @@ class Container extends Component {
     };
   }
   componentWillMount() {
-    const id = this.props.routeParams.id;
-    return this.props.fetchSerieAction(id)
+    this.props.queryFilmsAction()
       .then(() => {
         this.setState({loaded: true});
       });
@@ -33,12 +33,13 @@ class Container extends Component {
     if (!this.state.loaded) {
       return null;
     }
+    const {onSubmit, films} = this.props;
     return (
-      <View serie={this.props.serie}/>
+      <Form
+        films={films}
+        onSubmit={onSubmit}
+      />
     );
-  }
-  componentWillUnmount() {
-
   }
 }
 

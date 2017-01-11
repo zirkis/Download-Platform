@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
 import DocumentTitle from 'react-document-title';
 
-import LoginForm from '../../forms/login/form';
+import LoginForm from '../../forms/login/container';
 import styles from './styles.css';
 
 @CSSModules(styles)

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
 
 import styles from './styles.css';
-import RemoveFilmForm from '../../../forms/remove/film/form';
+import RemoveFilmForm from '../../../forms/remove/film/container';
 
 @CSSModules(styles)
 class View extends Component {

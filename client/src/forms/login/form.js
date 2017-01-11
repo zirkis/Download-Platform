@@ -17,7 +17,7 @@ const floatingLabelStyle = {
 @CSSModules(styles)
 class Form extends React.Component {
   render() {
-    const {handleSubmit} = this.props;
+    const {handleSubmit, user} = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <div>
@@ -32,7 +32,11 @@ class Form extends React.Component {
                  floatingLabelStyle={floatingLabelStyle}
           />
         </div>
-
+        {user.error &&
+        <div styleName="error">
+          {user.error}
+        </div>
+        }
         <div styleName='button'>
           <RaisedButton
             label='Login'

@@ -1,4 +1,4 @@
-import {applyMiddleware, createStore} from "redux";
+import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {browserHistory} from 'react-router';
 import {routerMiddleware} from 'react-router-redux';
@@ -12,4 +12,6 @@ const middleware = applyMiddleware(
   thunk
 );
 
-export default createStore(reducer, middleware);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export default createStore(reducer, composeEnhancers(middleware));

@@ -36,10 +36,10 @@ export function loginUser(creds) {
         });
         dispatch(push(CONFIG['redirectRouteAfterLogin']));
       })
-      .catch(err => {
+      .catch(() => {
         dispatch({
           type: LOGIN_REJECTED,
-          payload: err.error
+          payload: 'Wrong credentials'
         });
       });
   }

@@ -38,12 +38,14 @@ class Form extends React.Component {
           <Field name="name" component={TextField} type="text"
                  floatingLabelText="Name"
                  floatingLabelStyle={floatingLabelStyle}
+                 fullWidth={true}
           />
         </div>
         <div styleName='button'>
           <RaisedButton
             label='Remove'
-            style={ {'width': '50%'} }
+            style={{'width': '50%'}}
+            backgroundColor="grey"
             type='submit'
           />
         </div>

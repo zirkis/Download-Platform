@@ -11,7 +11,7 @@ import {fetchFilm, resetFilm} from '../../actions/film';
   },
   dispatch => {
     return {
-      fetchFilm: id => {
+      fetchFilmAction: id => {
         return dispatch(fetchFilm(id));
       },
       resetFilmAction: () => {
@@ -29,7 +29,7 @@ class Container extends Component {
   componentWillMount() {
     const id = this.props.routeParams.id;
     const filter = {simple: {_id: id}};
-    return this.props.fetchFilm(filter)
+    this.props.fetchFilmAction(filter)
       .then(() => {
         this.setState({loaded: true});
       })

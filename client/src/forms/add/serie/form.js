@@ -6,28 +6,10 @@ import {fullBlack} from 'material-ui/styles/colors';
 import CSSModules from 'react-css-modules';
 
 import styles from './styles.css';
+import {validate} from './validations';
 
 const floatingLabelStyle = {
   color: fullBlack
-};
-
-const validate = values => {
-  const errors = {};
-  const requiredFields = [
-    'name',
-    'description',
-    'posterLink',
-    'productionDate',
-    'actors',
-    'director',
-    'country'
-  ];
-  requiredFields.forEach(field => {
-    if (!values[field]) {
-      errors[field] = 'Required'
-    }
-  });
-  return errors;
 };
 
 @reduxForm({
@@ -44,6 +26,7 @@ class Form extends React.Component {
           <Field name="name" component={TextField} type="text"
                  floatingLabelText="Name"
                  floatingLabelStyle={floatingLabelStyle}
+                 fullWidth={true}
           />
         </div>
         <div>
@@ -51,6 +34,7 @@ class Form extends React.Component {
                  floatingLabelText="Description"
                  floatingLabelStyle={floatingLabelStyle}
                  multiLine={true}
+                 fullWidth={true}
                  rows={2}
                  rowsMax={5}
           />
@@ -59,12 +43,14 @@ class Form extends React.Component {
           <Field name="posterLink" component={TextField} type="text"
                  floatingLabelText="Poster link"
                  floatingLabelStyle={floatingLabelStyle}
+                 fullWidth={true}
           />
         </div>
         <div>
           <Field name="productionDate" component={DatePicker}
                  floatingLabelText="Production date"
                  floatingLabelStyle={floatingLabelStyle}
+                 fullWidth={true}
                  disableYearSelection={false}
                  format={(value, name) => value === '' ? null : value}
                  mode="landscape"
@@ -74,6 +60,7 @@ class Form extends React.Component {
           <Field name="actors" component={TextField} type="text"
                  floatingLabelText="Actors"
                  floatingLabelStyle={floatingLabelStyle}
+                 fullWidth={true}
                  multiLine={true}
                  rows={2}
                  rowsMax={5}
@@ -83,18 +70,21 @@ class Form extends React.Component {
           <Field name="director" component={TextField} type="text"
                  floatingLabelText="Director"
                  floatingLabelStyle={floatingLabelStyle}
+                 fullWidth={true}
           />
         </div>
         <div>
           <Field name="country" component={TextField} type="text"
                  floatingLabelText="Country"
                  floatingLabelStyle={floatingLabelStyle}
+                 fullWidth={true}
           />
         </div>
         <div styleName='button'>
           <RaisedButton
             label='Create'
-            style={ {'width': '50%'} }
+            style={{'width': '50%'}}
+            backgroundColor="grey"
             type='submit'
           />
         </div>
