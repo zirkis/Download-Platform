@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {queryFilms} from '../../actions/films';
-import {querySeries} from '../../actions/series';
+import {getFilms} from '../../actions/films/get-films';
+import {getSeries} from '../../actions/series/get-series';
 
 @connect(store => {
     return {
@@ -13,7 +13,7 @@ import {querySeries} from '../../actions/series';
   },
   dispatch => {
     return {
-      queryFilmsAction: search => {
+      getFilmsAction: search => {
         const filter = {
           simple: {
             name: {
@@ -22,9 +22,9 @@ import {querySeries} from '../../actions/series';
             }
           }
         };
-        return dispatch(queryFilms(filter));
+        return dispatch(getFilms(filter));
       },
-      querySeriesAction: search => {
+      getSeriesAction: search => {
         const filter = {
           simple: {
             name: {
@@ -33,7 +33,7 @@ import {querySeries} from '../../actions/series';
             }
           }
         };
-        return dispatch(querySeries(filter));
+        return dispatch(getSeries(filter));
       }
     }
   })
@@ -57,9 +57,9 @@ class Container extends Component {
     this._loadMedia(search);
   }
   _loadMedia(search) {
-    return this.props.queryFilmsAction(search)
+    return this.props.getFilmsAction(search)
       .then(() => {
-        return this.props.querySeriesAction(search);
+        return this.props.getSeriesAction(search);
       })
       .then(() => {
         this.setState({loaded: true});

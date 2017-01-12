@@ -1,0 +1,12 @@
+.container {
+	position: relative;
+	z-index: 10;
+}
+.results {
+	padding: 5px;
+	background-color: white!important;
+	box-shadow: 2px 2px #0f0f10;
+	position: absolute;
+	top: 40px;
+	width: 250px;
+}

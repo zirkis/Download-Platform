@@ -1,5 +1,5 @@
 import {change} from 'redux-form';
-import {fetchFilm} from '../../../actions/film';
+import {getFilm} from '../../../actions/film/get-film';
 
 const resetValues = (dispatch) => {
   const formName = 'update_film';
@@ -49,7 +49,7 @@ export const validate = values => {
 export const asyncValidate = (values, dispatch) => {
   const filter = {simple: {name: values.ref}};
   const errors = {};
-  return dispatch(fetchFilm(filter))
+  return dispatch(getFilm(filter))
     .then(film => {
       if (!film || !film.length) {
         resetValues(dispatch);

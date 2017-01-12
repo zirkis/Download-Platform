@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {queryFilms} from '../../actions/films';
+import {getFilms} from '../../actions/films/get-films';
 
 @connect(store => {
     return {
@@ -11,8 +11,8 @@ import {queryFilms} from '../../actions/films';
   },
   dispatch => {
     return {
-      queryFilmsAction: () => {
-        return dispatch(queryFilms());
+      getFilmsAction: () => {
+        return dispatch(getFilms());
       }
     }
   })
@@ -24,7 +24,7 @@ class Container extends Component {
     };
   }
   componentWillMount() {
-    return this.props.queryFilmsAction()
+    return this.props.getFilmsAction()
       .then(() => {
         this.setState({loaded: true});
       });

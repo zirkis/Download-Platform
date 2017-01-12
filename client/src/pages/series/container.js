@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {querySeries} from '../../actions/series';
+import {getSeries} from '../../actions/series/get-series';
 
 @connect(store => {
     return {
@@ -11,8 +11,8 @@ import {querySeries} from '../../actions/series';
   },
   dispatch => {
     return {
-      querySeriesAction: () => {
-        return dispatch(querySeries());
+      getSeriesAction: () => {
+        return dispatch(getSeries());
       }
     }
   })
@@ -24,7 +24,7 @@ class Container extends Component {
     };
   }
   componentWillMount() {
-    return this.props.querySeriesAction()
+    return this.props.getSeriesAction()
       .then(() => {
         this.setState({loaded: true});
       });

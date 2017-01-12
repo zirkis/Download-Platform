@@ -2,19 +2,19 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {removeFilm} from '../../../actions/film';
+// import {removeEpisode} from '../../../actions/episode/remove-episode';
 
 @connect(null,
   dispatch => {
     return {
-      removeFilm: id => {
-        dispatch(removeFilm(id));
+      removeEpisodeAction: id => {
+        // dispatch(removeEpisode(id));
       }
     }
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.removeFilm}/>;
+    return <View onSubmit={this.props.removeEpisodeAction}/>;
   }
 }
 

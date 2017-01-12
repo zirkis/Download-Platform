@@ -6,3 +6,6 @@
 	height: 100% !important;
 	border: solid;
 }
+.dropdown {
+	min-width: 175px;
+}

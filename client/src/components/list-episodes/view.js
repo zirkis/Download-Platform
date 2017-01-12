@@ -9,7 +9,7 @@ import styles from './styles.css';
 class View extends Component {
   render() {
     const content = [];
-    const episodes = this.props.episodes;
+    const {episodes} = this.props;
     const saisons = [];
     episodes.forEach(episodes => {
       if (saisons.indexOf(episodes.saison) === -1) {
@@ -17,7 +17,6 @@ class View extends Component {
       }
     });
     saisons.sort();
-    console.log(saisons);
     saisons.forEach(saison => {
       const subContent = [];
       const episodesInSaison = episodes.filter(episodes => {

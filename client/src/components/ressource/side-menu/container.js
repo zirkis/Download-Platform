@@ -4,7 +4,7 @@ import {push} from 'react-router-redux';
 
 import View from './view';
 
-@connect(null,
+@connect(undefined,
   dispatch => {
     return {
       redirect: path => {

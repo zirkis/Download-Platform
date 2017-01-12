@@ -1,44 +1,30 @@
-import axios from 'axios';
 import {push} from 'react-router-redux';
 
-import CONFIG from '../../config/default.json';
-import {
-  LOGIN_REQUEST,
-  LOGIN_ACCEPTED,
-  LOGIN_REJECTED,
-  CHECK_AUTH,
-  CHECK_AUTH_OK,
-  CHECK_AUTH_KO,
-  LOGOUT
-} from '../constants/user';
+import * as api from '../api';
+import * as C from '../../constants/user';
+import CONFIG from '../../../config/default.json';
 
 function loginRequets() {
   return {
-    type: LOGIN_REQUEST
+    type: C.LOGIN_REQUEST
   }
 }
 
 export function loginUser(creds) {
   return dispatch => {
     dispatch(loginRequets());
-    return axios({
-      url: `${CONFIG['apiUrl']}/users/login`,
-      timeout: 20000,
-      method: 'post',
-      data: creds,
-      responseType: 'json'
-    })
+    return api.login(creds)
       .then(res => {
         localStorage.token = res.data.accessToken;
         dispatch({
-          type: LOGIN_ACCEPTED,
+          type: C.LOGIN_ACCEPTED,
           payload: res.data
         });
         dispatch(push(CONFIG['redirectRouteAfterLogin']));
       })
       .catch(() => {
         dispatch({
-          type: LOGIN_REJECTED,
+          type: C.LOGIN_REJECTED,
           payload: 'Wrong credentials'
         });
       });
@@ -47,32 +33,26 @@ export function loginUser(creds) {
 
 export function checkAuth() {
   return dispatch => {
-    dispatch({type: CHECK_AUTH});
+    dispatch({type: C.CHECK_AUTH});
 
     const token = localStorage.token;
     if (!token) {
       dispatch({
-        type: CHECK_AUTH_KO
+        type: C.CHECK_AUTH_KO
       });
       return Promise.resolve();
     }
-    return axios({
-      url: `${CONFIG['apiUrl']}/users/authenticate`,
-      timeout: 20000,
-      method: 'post',
-      data: {token},
-      responseType: 'json'
-    })
+    return api.authenticate(token)
       .then(res => {
         localStorage.token = res.data.accessToken;
         dispatch({
-          type: CHECK_AUTH_OK,
+          type: C.CHECK_AUTH_OK,
           payload: res.data
         });
       })
       .catch(() => {
         dispatch({
-          type: CHECK_AUTH_KO
+          type: C.CHECK_AUTH_KO
         });
       });
   }
@@ -81,7 +61,7 @@ export function checkAuth() {
 export function logout() {
   return dispatch => {
     delete localStorage.token;
-    dispatch({type: LOGOUT});
+    dispatch({type: C.LOGOUT});
     dispatch(push(CONFIG['redirectRouteAfterLogout']));
   }
 }

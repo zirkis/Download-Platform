@@ -2,20 +2,20 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {createSerie} from '../../../actions/serie';
+// import {removeSerie} from '../../../actions/serie/remove-serie';
 
 @connect(null,
   dispatch => {
     return {
-      createSerie: serie => {
+      removeSerieAction: serie => {
         console.log(serie);
-        dispatch(createSerie(serie));
+        // dispatch(removeSerie(serie));
       }
     }
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.createSerie}/>;
+    return <View onSubmit={this.props.removeSerieAction}/>;
   }
 }
 

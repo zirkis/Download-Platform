@@ -3,24 +3,20 @@ import {connect} from 'react-redux';
 import {formValueSelector} from 'redux-form';
 
 import Form from './form';
-import {queryFilms} from '../../../actions/films';
-import {resetFilm} from '../../../actions/film';
+import {getFilms} from '../../../actions/films/get-films';
 
 @connect(store => {
     const selector = formValueSelector('update_film');
     return {
+      isFilmSelected: selector(store, 'name') || false,
       posterLink: selector(store, 'posterLink'),
-      film: store.film.film,
       films: store.films.films
     }
   },
   dispatch => {
     return {
-      queryFilmsAction: () => {
-        return dispatch(queryFilms());
-      },
-      resetFilmAction() {
-        dispatch(resetFilm());
+      getFilmsAction: () => {
+        return dispatch(getFilms());
       }
     };
   })
@@ -28,11 +24,12 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: false,
+      film: null,
     };
   }
   componentWillMount() {
-    return this.props.queryFilmsAction()
+    return this.props.getFilmsAction()
       .then(() => {
         this.setState({loaded: true});
       });
@@ -41,14 +38,13 @@ class Container extends Component {
     if (!this.state.loaded) {
       return null;
     }
-    const {onSubmit, films, film, resetFilmAction, posterLink} = this.props;
+    const {onSubmit, films, isFilmSelected, posterLink} = this.props;
     return (
       <Form
         films={films}
-        film={film}
         posterLink={posterLink}
+        isFilmSelected={isFilmSelected}
         onSubmit={onSubmit}
-        resetFilmAction={resetFilmAction}
       />
     );
   }

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
-import {Input, Menu, Button, Icon} from 'semantic-ui-react';
+import {Menu, Button} from 'semantic-ui-react';
 
 import styles from './styles.css';
+import SearchInput from '../search-input2/container';
 
 @CSSModules(styles)
 class View extends Component {
@@ -24,8 +25,7 @@ class View extends Component {
     }
   }
   render() {
-    const location = this.props.location;
-    const isAuthenticated = this.props.isAuthenticated;
+    const {location, isAuthenticated} = this.props;
     let profile = null;
     let button = null;
     if (isAuthenticated) {
@@ -67,15 +67,7 @@ class View extends Component {
           {profile}
           <Menu.Menu position='right'>
             <Menu.Item>
-              <Input
-                action={
-                  <Button icon onClick={() => {this.search()}}>
-                    <Icon name='search'/>
-                  </Button>
-                }
-                value={this.state.search}
-                onChange={evt => {this.updateInputValue(evt)}}
-                placeholder='Search...'/>
+              <SearchInput redirect={this.props.redirect}/>
             </Menu.Item>
             {button}
           </Menu.Menu>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {createSerie} from '../../../actions/serie';
+import {createSerie} from '../../../actions/serie/get-serie';
 
 @connect(null,
   dispatch => {

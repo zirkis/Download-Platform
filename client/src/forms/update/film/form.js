@@ -13,7 +13,6 @@ const floatingLabelStyle = {
   color: fullBlack
 };
 
-
 @reduxForm({
   form: 'update_film',
   validate,
@@ -27,7 +26,7 @@ class Form extends React.Component {
     asyncValidate();
   }
   render() {
-    const {handleSubmit, film, films, posterLink} = this.props;
+    const {handleSubmit, films, isFilmSelected, posterLink} = this.props;
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
@@ -40,7 +39,7 @@ class Form extends React.Component {
                  onNewRequest={() => this.onNewRequest()}
           />
         </div>
-        {film &&
+        {isFilmSelected &&
         <div>
           <div>
             <Field name="name" component={TextField} type="text"
@@ -135,9 +134,6 @@ class Form extends React.Component {
         </div>
       </form>
     );
-  }
-  componentWillUnmount() {
-    this.props.resetFilmAction();
   }
 }
 

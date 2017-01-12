@@ -2,20 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {fetchFilm, resetFilm} from '../../actions/film';
+import {getFilm} from '../../actions/film/get-film';
 
-@connect(store => {
-    return {
-      film: store.film.film
-    };
-  },
+@connect(undefined,
   dispatch => {
     return {
-      fetchFilmAction: id => {
-        return dispatch(fetchFilm(id));
-      },
-      resetFilmAction: () => {
-        dispatch(resetFilm());
+      getFilmAction: id => {
+        return dispatch(getFilm(id));
       }
     }
   })
@@ -23,27 +16,28 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: false,
+      film: null
     };
   }
   componentWillMount() {
-    const id = this.props.routeParams.id;
-    const filter = {simple: {_id: id}};
-    this.props.fetchFilmAction(filter)
-      .then(() => {
-        this.setState({loaded: true});
+    const _id = this.props.routeParams.id;
+    const filter = {simple: {_id}};
+    this.props.getFilmAction(filter)
+      .then(film => {
+        this.setState({
+          loaded: true,
+          film
+        });
       })
   }
   render() {
-    if (!this.state.loaded) {
+    if (!this.state.loaded || !this.state.film) {
       return null;
     }
     return (
-      <View film={this.props.film}/>
+      <View film={this.state.film}/>
     );
-  }
-  componentWillUnmount() {
-    this.props.resetFilmAction();
   }
 }
 

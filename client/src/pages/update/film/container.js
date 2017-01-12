@@ -2,20 +2,20 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-// import {editFilm} from '../../../actions/film';
+// import {updateFilm} from '../../../actions/update-film';
 
 @connect(null,
   dispatch => {
     return {
-      editFilm: film => {
+      updateFilmAction: film => {
         console.log(film);
-        // dispatch(editFilm(film));
+        // dispatch(updateFilm(film));
       }
     }
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.editFilm}/>;
+    return <View onSubmit={this.props.updateFilmAction}/>;
   }
 }
 
