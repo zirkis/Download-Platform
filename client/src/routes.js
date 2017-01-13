@@ -18,6 +18,7 @@ import Film from './pages/film/container';
 import Series from './pages/series/container';
 import Serie from './pages/serie/container';
 import Login from './pages/login/container';
+import Register from './pages/register/container';
 
 // Private pages
 import Profile from './pages/profile/container';
@@ -50,6 +51,7 @@ export default(
         <Route path="series" component={Series}/>
         <Route path="serie/:id" component={Serie} />
         <Route path="login" component={Login}/>
+        <Route path="register" component={Register}/>
         <Route component={ProtectedLayout}>
           <Route path="profile" component={Profile}/>
           <Route path="add" component={RessourceLayout}>

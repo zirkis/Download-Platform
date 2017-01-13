@@ -58,3 +58,13 @@ export function authenticate(token) {
     responseType: 'json'
   })
 }
+
+export function register(creds) {
+  return axios({
+    url: `${CONFIG['apiUrl']}/users/register`,
+    timeout: 20000,
+    method: 'post',
+    data: creds,
+    responseType: 'json'
+  })
+}

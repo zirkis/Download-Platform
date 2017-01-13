@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 // eslint-disable-next-line import/no-unassigned-import
 require('mongoose-type-email');
-mongoose.Promise = require('bluebird');
+const Promise = require('bluebird');
 
 const Schema = mongoose.Schema;
 const self = process.env.SERVER_IP;
@@ -30,6 +30,20 @@ module.exports = {
   actions: {
     login(email, password, token) {
       return model.findOneAndUpdate({email, password}, {token}).exec();
+    },
+    register(email, password, token) {
+      return model.findOne({email})
+        .then(user => {
+          if (!user) {
+            const newUser = new model({
+              email,
+              password,
+              token
+            });
+            return newUser.save();
+          }
+          return Promise.reject('Email already taken');
+        })
     },
     getUserByToken(token, newToken) {
       return model

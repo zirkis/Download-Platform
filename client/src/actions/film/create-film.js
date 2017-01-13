@@ -10,19 +10,20 @@ function filmCreate() {
 
 export function createFilm(film) {
   return dispatch => {
+    dispatch(filmCreate());
     const filmRecord = {
       ...film,
       actors: film.actors.split(/\r?\n/)
     };
     const data = FilmSerializer.serialize(filmRecord);
     delete data.data.id;
-    dispatch(filmCreate());
     return api.postRessource('films', data)
       .then(() => {
         dispatch({
           type: C.FILM_CREATE_SUCCESS,
           payload: film
         });
+        return film;
       })
       .catch(err => {
         dispatch({

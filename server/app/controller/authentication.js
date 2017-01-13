@@ -39,5 +39,18 @@ module.exports = {
       .catch(err => {
         res.status(401).send({error: err});
       });
+  },
+  register(req, res, next) {
+    const {email, password} = req.body;
+    const token = jwt.sign({data: req.body}, process.env.TOKEN_SECRET,
+      {expiresIn: process.env.TOKEN_EXPIRES});
+    dbUsers.actions.register(email, password, token)
+      .then(user => {
+        req.user = user;
+        next();
+      })
+      .catch(err => {
+        res.status(401).send({error: err});
+      });
   }
 };
