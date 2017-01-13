@@ -100,6 +100,7 @@ export function getSerie(filter) {
         return seriesDeserialize(dispatch, series, episodes, links);
       })
       .catch(err => {
+        console.log('yooo');
         dispatch({
           type: C.SERIE_ERROR,
           payload: err.error

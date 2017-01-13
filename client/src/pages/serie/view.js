@@ -6,11 +6,15 @@ import {Image} from 'semantic-ui-react';
 import styles from './styles.css';
 import DateHelper from '../../helpers/date';
 import ListEpisodes from '../../components/list-episodes/container';
+import NotFound from '../../components/not-found/container';
 
 @CSSModules(styles)
 class View extends Component {
   render() {
-    const serie = this.props.serie;
+    const {serie} = this.props;
+    if (!serie) {
+      return <NotFound type="serie"/>;
+    }
     return (
       <DocumentTitle title='Serie'>
         <div styleName='page'>

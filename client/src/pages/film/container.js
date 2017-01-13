@@ -43,7 +43,7 @@ class Container extends Component {
       });
   }
   render() {
-    if (!this.state.loaded || !this.state.film) {
+    if (!this.state.loaded) {
       return null;
     }
     return (

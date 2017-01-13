@@ -53,7 +53,6 @@ const initSeries = {
       productionDate: new Date(2012,4),
       director: 'Andrew Kreisberg',
       country: 'USA',
-      episodes: [episodes[0]._id],
       uploader: uploader._id
     }));
 

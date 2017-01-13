@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
-import {Image} from 'semantic-ui-react';
 import DocumentTitle from 'react-document-title';
+import {Image} from 'semantic-ui-react';
 
 import styles from './styles.css';
 import DateHelper from '../../helpers/date';
 import DownloadBar from '../../components/downloadbar/container';
+import NotFound from '../../components/not-found/container';
 
 @CSSModules(styles)
 class View extends Component {
   render() {
     const film = this.props.film;
     if (!film) {
-      return null;
+      return <NotFound type="film"/>;
     }
     return (
       <DocumentTitle title='Film'>
         <div styleName='page'>
           <div styleName='container'>
-
             <h1 styleName="title">{film.name}</h1>
             <hr/>
             <card styleName="film_poster">

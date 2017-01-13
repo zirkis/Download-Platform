@@ -4,8 +4,8 @@ import View from './view';
 
 class Container extends Component {
   render() {
-    return <View links={this.props.links}/>
+    return <View type={this.props.type}/>
   }
 }
 
-export default Container;
+export default Container
