@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 
 import View from './view';
 import {getFilms} from '../../actions/films/get-films';
 import {getSeries} from '../../actions/series/get-series';
 
 @connect(store => {
-  return {
-    films: store.films.films,
-    series: store.series.series
-  }
-},
+    return {
+      films: store.films.films,
+      series: store.series.series
+    }
+  },
   dispatch => {
     return {
       getFilmsAction: () => {
@@ -18,6 +19,9 @@ import {getSeries} from '../../actions/series/get-series';
       },
       getSeriesAction: () => {
         return dispatch(getSeries());
+      },
+      redirect: path => {
+        return dispatch(push(path));
       }
     }
   })

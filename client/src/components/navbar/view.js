@@ -3,7 +3,7 @@ import CSSModules from 'react-css-modules';
 import {Menu, Button} from 'semantic-ui-react';
 
 import styles from './styles.css';
-import SearchInput from '../search-input2/container';
+import SearchInput from '../search-input/container';
 
 @CSSModules(styles)
 class View extends Component {

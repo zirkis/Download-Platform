@@ -1,12 +1,10 @@
 .container {
-	position: relative;
-	z-index: 10;
+	width: 200px;
+	margin: 0px!important;
+	padding: 0px!important;
 }
-.results {
-	padding: 5px;
-	background-color: white!important;
-	box-shadow: 2px 2px #0f0f10;
-	position: absolute;
-	top: 40px;
-	width: 250px;
+.input {
+	display: inline-block;
+	margin-right: 5px;
+	width: 150px;
 }

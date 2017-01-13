@@ -20,16 +20,27 @@ class Container extends Component {
       film: null
     };
   }
+  componentWillReceiveProps(nextProps) {
+    const lastId = this.props.routeParams.id;
+    const newId = nextProps.routeParams.id;
+    if (this.state.loaded && lastId !== newId) {
+      this.setState({loaded: false});
+      this._loadMedia(newId);
+    }
+  }
   componentWillMount() {
-    const _id = this.props.routeParams.id;
+    const {id} = this.props.routeParams;
+    this._loadMedia(id);
+  }
+  _loadMedia(_id) {
     const filter = {simple: {_id}};
-    this.props.getFilmAction(filter)
+    return this.props.getFilmAction(filter)
       .then(film => {
         this.setState({
           loaded: true,
           film
         });
-      })
+      });
   }
   render() {
     if (!this.state.loaded || !this.state.film) {

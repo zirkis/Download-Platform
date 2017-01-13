@@ -1,95 +1,62 @@
 import React, {Component} from 'react';
-import {Icon, Button, Input, Image, List} from 'semantic-ui-react';
 import CSSModules from 'react-css-modules';
+import AutoComplete from 'material-ui/AutoComplete';
+import {fullBlack} from 'material-ui/styles/colors';
+import {Button, Icon} from 'semantic-ui-react'
 
 import styles from './styles.css';
 
+const floatingLabelStyle = {
+  color: fullBlack
+};
+
 @CSSModules(styles)
 class View extends Component {
-  componentWillMount() {
-    this.resetComponent()
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ''
+    };
   }
-  onBlur() {
-    setTimeout(() => {
-      this.setState({
-        ...this.state,
-        focused: false
-      })
-    }, 500);
-  }
-  onFocus() {
-    this.setState({
-      ...this.state,
-      focused: true
-    })
-  }
-  resetComponent() {
-    this.setState({
-      search: '',
-      focused: false,
-      results: null
-    });
-  }
-  updateInputValue(evt) {
-    const search = evt.target.value;
-    const {media} = this.props;
-    if (!media) {
-      return;
+  onNewRequest = (chosenRequest, index) => {
+    const media = this.props.media[index];
+    this.props.redirect(`${media.type}/${media.id}`);
+  };
+  search = () => {
+    const {search} = this.state;
+    if (search && search !== '') {
+      this.props.redirect(`/search/${search}`);
     }
-    const regex = new RegExp(`.*${search}.*`, 'i');
-    const match = media.filter(m => m.name.match(regex)).splice(0,3);
-    const results =
-      (search !== '') && (match.length) ? match : null;
-    this.setState({
-      ...this.state,
-      search,
-      results
-    });
-  }
-  search() {
-    if (this.state.search) {
-      this.resetComponent();
-      this.props.redirect(`/search/${this.state.search}`);
-    }
-  }
+  };
+  onUpdateInput = (newValue) => {
+    this.setState({search: newValue});
+  };
   render() {
-    const {search, results, focused} = this.state;
-    const {redirect} = this.props;
-    let displayResults = [];
-    if (results) {
-      results.forEach(result => {
-        displayResults.push(
-          <List.Item key={displayResults.length}
-                     onClick={() => redirect(`/${result.type}/${result.id}`)}>
-            <Image avatar src={result.image} />
-            <List.Content>
-              <List.Header>{result.name}</List.Header>
-            </List.Content>
-          </List.Item>
-        )
-      })
-    }
+    const {media} = this.props;
+
     return (
       <div styleName="container">
-        {/*<Input*/}
-          {/*ref="searchInput"*/}
-          {/*action={*/}
-            {/*<Button icon onClick={() => {this.search()}}>*/}
-              {/*<Icon name='search'/>*/}
-            {/*</Button>*/}
-          {/*}*/}
-          {/*value={search}*/}
-          {/*onChange={evt => {this.updateInputValue(evt)}}*/}
-          {/*placeholder='Search...'/>*/}
-        {/*{results && focused &&*/}
-        {/*<div styleName="results">*/}
-          {/*<List divided verticalAlign='middle'>*/}
-            {/*{displayResults}*/}
-          {/*</List>*/}
-        {/*</div>*/}
-        {/*}*/}
-      </div>
+        <div styleName="input">
+          <AutoComplete ref="search" name="search" type="text"
+                        hintText="Search..."
+                        floatingLabelStyle={floatingLabelStyle}
+                        fullWidth={true}
+                        filter={AutoComplete.caseInsensitiveFilter}
+                        dataSource={media.map(m => m.name)}
+                        onUpdateInput={this.onUpdateInput}
+                        onNewRequest={this.onNewRequest}
+                        style={{
+                          padding: 0,
+                          margin: 0,
+                          height: '10px'
+                        }} />
+        </div>
+        <Button icon
+                onClick={this.search}>
+          <Icon name='search' />
+        </Button>
 
+      </div>
     )
   }
 }

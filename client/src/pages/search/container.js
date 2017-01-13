@@ -69,12 +69,20 @@ class Container extends Component {
     if (!this.state.loaded) {
       return null;
     }
+    const search = this.props.routeParams.search;
+    const regex = new RegExp(`.*${search}.*`,'i');
+    const films = this.props.films.filter(film => {
+      return film.name.match(regex);
+    });
+    const series = this.props.series.filter(serie => {
+      return serie.name.match(regex);
+    });
     return (
       <div key={this.props.routeParams.search}>
         <View
-          films={this.props.films}
+          films={films}
           search={this.props.routeParams.search}
-          series={this.props.series}
+          series={series}
         />
       </div>
 

@@ -19,9 +19,21 @@ class Container extends Component {
       serie: null
     };
   }
+  componentWillReceiveProps(nextProps) {
+    const lastId = this.props.routeParams.id;
+    const newId = nextProps.routeParams.id;
+    if (this.state.loaded && lastId !== newId) {
+      this.setState({loaded: false});
+      this._loadMedia(newId);
+    }
+  }
   componentWillMount() {
-    const id = this.props.routeParams.id;
-    return this.props.getSerieAction(id)
+    const {id} = this.props.routeParams;
+    this._loadMedia(id);
+  }
+  _loadMedia(_id) {
+    const filter = {simple: {_id}};
+    return this.props.getSerieAction(filter)
       .then(serie => {
         this.setState({
           loaded: true,
