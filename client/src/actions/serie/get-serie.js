@@ -10,10 +10,9 @@ function fetchSerie() {
   }
 }
 
-export function getSerie(_id) {
+export function getSerie(filter) {
   let serie = null;
   let included = [];
-  const filter = {simple: {_id}};
   return dispatch => {
     dispatch(fetchSerie());
     return api.getRessource('series', filter)

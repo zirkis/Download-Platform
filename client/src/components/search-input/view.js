@@ -25,6 +25,7 @@ class View extends Component {
   search = () => {
     const {search} = this.state;
     if (search && search !== '') {
+      this.setState({search: ''});
       this.props.redirect(`/search/${search}`);
     }
   };
@@ -45,6 +46,7 @@ class View extends Component {
                         dataSource={media.map(m => m.name)}
                         onUpdateInput={this.onUpdateInput}
                         onNewRequest={this.onNewRequest}
+                        searchText={this.state.search}
                         style={{
                           padding: 0,
                           margin: 0,
