@@ -54,7 +54,7 @@ class View extends Component {
     }
     return (
       <div styleName='container'>
-        <Menu stackable>
+        <Menu stackable fixed="top">
           <Menu.Item active={location === '/'}
                      name='Home'
                      onClick={() => {this.props.redirect('/');}}/>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+// import {reset} from 'redux-form';
 
 import View from './view';
 // import {updateSerie} from '../../../actions/serie/update-serie';
@@ -9,6 +10,7 @@ import View from './view';
     return {
       updateSerieAction: film => {
         // dispatch(updateSerie(film));
+        // dispatch(reset('update_serie'));
       }
     }
   })

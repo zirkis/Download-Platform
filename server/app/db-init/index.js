@@ -8,26 +8,28 @@ const EpisodeInit = require('./episodes').init;
 const db = {
   init() {
     // To populate the database in order to test
-    let allLinks = null;
-    let allEpisodes = null;
+    let uploader;
+    let allLinks;
+    let allEpisodes;
     UsersInit()
-      .then(() => {
+      .then(user => {
+        uploader = user;
         console.log('Users saved successfully');
-        return LinksInit();
+        return LinksInit(uploader);
       })
       .then(links => {
         console.log('Links saved successfully');
         allLinks = links;
-        return FilmsInit(allLinks);
+        return FilmsInit(uploader, allLinks);
       })
       .then(() => {
         console.log('Films saved successfully');
-        return EpisodeInit(allLinks);
+        return EpisodeInit(uploader, allLinks);
       })
       .then(episodes => {
         console.log('Episodes saved successfully');
         allEpisodes = episodes;
-        return SeriesInit(allEpisodes);
+        return SeriesInit(uploader, allEpisodes);
       })
       .then(() => {
         console.log('Series saved successfully');

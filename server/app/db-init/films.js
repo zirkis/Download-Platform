@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const Film = require('./../model/common/films').model;
 
 const initFilms = {
-  init(links) {
+  init(uploader, links) {
     const films = [];
     const promisesFilm = [];
     films.push(new Film({
@@ -18,10 +18,11 @@ const initFilms = {
       posterLink: 'http://fr.web.img3.acsta.net/r_1920_1080/pictures' +
       '/16/11/18/17/49/128537.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: [links[0]._id,links[1]._id],
+      links: [links[0]._id,links[1]._id],
       director: 'John Lee Hancock',
       country: 'USA',
-      length: 121
+      length: 121,
+      uploader: uploader._id
     }));
 
     films.push(new Film({
@@ -40,10 +41,11 @@ const initFilms = {
       posterLink: 'http://fr.web.img6.acsta.net/r_1920_1080/pictures' +
       '/16/10/19/14/33/069648.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: links[0]._id,
+      links: links[0]._id,
       director: 'Gareth Edwards',
       country: 'USA',
-      length: 141
+      length: 141,
+      uploader: uploader._id
     }));
 
     films.push(new Film({
@@ -64,10 +66,11 @@ const initFilms = {
       'http://fr.web.img3.acsta.net/r_1920_1080/pictures' +
       '/16/10/28/13/54/576646.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: links[0]._id,
+      links: links[0]._id,
       director: 'Justin Kurzel',
       country: 'USA',
-      length: 113
+      length: 113,
+      uploader: uploader._id
     }));
 
     films.push(new Film({
@@ -89,10 +92,11 @@ const initFilms = {
       posterLink: 'http://fr.web.img6.acsta.net/r_1920_1080/pictures' +
       '/16/09/30/14/48/139893.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: links[0]._id,
+      links: links[0]._id,
       director: 'Hugo Gélin',
       country: 'France',
-      length: 104
+      length: 104,
+      uploader: uploader._id
     }));
     films.push(new Film({
       name: 'Passengers',
@@ -112,10 +116,11 @@ const initFilms = {
       posterLink: 'http://fr.web.img2.acsta.net/r_1920_1080/pictures' +
       '/16/12/14/16/45/405336.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: links[0]._id,
+      links: links[0]._id,
       director: 'Morten Tyldum',
       country: 'USA',
-      length: 129
+      length: 129,
+      uploader: uploader._id
     }));
 
     films.push(new Film({
@@ -137,10 +142,11 @@ const initFilms = {
       posterLink: 'http://fr.web.img3.acsta.net/r_1920_1080/pictures' +
       '/16/10/14/15/10/425022.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: links[0]._id,
+      links: links[0]._id,
       director: 'Clint Eastwood',
       country: 'USA',
-      length: 96
+      length: 96,
+      uploader: uploader._id
     }));
 
     films.push(new Film({
@@ -161,10 +167,11 @@ const initFilms = {
       posterLink: 'http://fr.web.img4.acsta.net/r_1920_1080/pictures' +
       '/16/10/24/15/52/414639.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: links[0]._id,
+      links: links[0]._id,
       director: 'Denis Villeneuve',
       country: 'USA',
-      length: 116
+      length: 116,
+      uploader: uploader._id
     }));
 
     films.push(new Film({
@@ -184,10 +191,11 @@ const initFilms = {
       posterLink: 'http://fr.web.img3.acsta.net/r_1920_1080/pictures' +
       '/16/10/11/09/32/205295.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: links[0]._id,
+      links: links[0]._id,
       director: 'David Yates',
       country: 'UK',
-      length: 133
+      length: 133,
+      uploader: uploader._id
     }));
 
     films.push(new Film({
@@ -208,10 +216,11 @@ const initFilms = {
       posterLink: 'http://fr.web.img6.acsta.net/r_1920_1080/pictures' +
       '/16/11/29/12/35/270013.jpg',
       productionDate: new Date(2016,1),
-      downloadLinks: links[0]._id,
+      links: links[0]._id,
       director: 'Chris Wedge',
       country: 'USA',
-      length: 104
+      length: 104,
+      uploader: uploader._id
     }));
 
     films.forEach(film => {

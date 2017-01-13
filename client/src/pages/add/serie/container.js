@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {reset} from 'redux-form';
 
 import View from './view';
 import {createSerie} from '../../../actions/serie/get-serie';
@@ -8,8 +9,8 @@ import {createSerie} from '../../../actions/serie/get-serie';
   dispatch => {
     return {
       createSerie: serie => {
-        console.log(serie);
         dispatch(createSerie(serie));
+        dispatch(reset('add_serie'));
       }
     }
   })

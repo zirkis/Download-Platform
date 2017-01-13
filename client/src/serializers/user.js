@@ -10,6 +10,7 @@ export const UserSerializer = {
       keyForAttribute: 'camelCase',
       attributes: [
         'email',
+        'pseudo',
         'password'
       ]
     }).serialize(data);

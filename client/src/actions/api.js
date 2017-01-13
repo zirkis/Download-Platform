@@ -3,7 +3,7 @@ import Qs from 'qs';
 
 import CONFIG from '../../config/default.json';
 
-export function getRessource(ressourceType, filter) {
+export function getRessource(ressourceType, filter, include) {
   return axios({
     method: 'get',
     url: `${CONFIG['apiUrl']}/${ressourceType}`,
@@ -11,13 +11,14 @@ export function getRessource(ressourceType, filter) {
       'Content-Type': 'application/json'
     },
     params: {
-      filter
+      filter,
+      include
     },
     paramsSerializer: params => {
       return Qs.stringify(params, {arrayFormat: 'brackets'})
     },
     responseType: 'json'
-  })
+  });
 }
 
 export function postRessource(ressourceType, data) {
@@ -28,11 +29,18 @@ export function postRessource(ressourceType, data) {
       'Content-Type': 'application/vnd.api+json'
     },
     data
-  })
+  });
 }
 
 export function updateRessource(ressourceType, data) {
-
+  return axios({
+    method: 'patch',
+    url: `${CONFIG['apiUrl']}/${ressourceType}/${data.data.id}`,
+    headers: {
+      'Content-Type': 'application/vnd.api+json'
+    },
+    data
+  });
 }
 
 export function deleteRessource(ressourceType, data) {

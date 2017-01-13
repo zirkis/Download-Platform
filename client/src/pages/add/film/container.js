@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {reset} from 'redux-form';
 
 import View from './view';
 import {createFilm} from '../../../actions/film/create-film';
@@ -9,6 +10,7 @@ import {createFilm} from '../../../actions/film/create-film';
     return {
       createFilm: film => {
         dispatch(createFilm(film));
+        dispatch(reset('add_film'));
       }
     }
   })

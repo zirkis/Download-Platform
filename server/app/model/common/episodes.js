@@ -12,7 +12,9 @@ const episodeSchema = new Schema({
   number: {type: Number, required: true},
   name: {type: String, required: true},
   resume: {type: String, required: true},
-  downloadLinks:  [{ type: ObjectId, ref: 'Link' }]
+  downloadLinks:  [{type: ObjectId, ref: 'Link'}],
+  addedAt: {type: Date, default: Date.now()},
+  uploader: {type: ObjectId, ref: 'User', required: true}
 });
 
 const model = mongoose.model('Episode', episodeSchema);

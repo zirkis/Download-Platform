@@ -9,6 +9,7 @@ const initUsers = {
         if (!user) {
           const admin = new User({
             email: 'Admin',
+            pseudo: 'SuperAdmin',
             password: 'admin'
           });
           return admin.save();

@@ -12,15 +12,16 @@ const self = process.env.SERVER_IP;
 // eslint-disable-next-line new-cap
 const userSchema = new Schema({
   email: {type: String, required: true, unique: true},
+  pseudo: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   token: {type: String}
 });
 
-const model = mongoose.model('User', userSchema);
+const Model = mongoose.model('User', userSchema);
 
 module.exports = {
   schema: userSchema,
-  model,
+  model: Model,
   registry: {
     urlTemplates: {
       self: `${self}/api/users/{id}`,
@@ -29,13 +30,13 @@ module.exports = {
   },
   actions: {
     login(email, password, token) {
-      return model.findOneAndUpdate({email, password}, {token}).exec();
+      return Model.findOneAndUpdate({email, password}, {token}).exec();
     },
     register(email, password, token) {
-      return model.findOne({email})
+      return Model.findOne({email})
         .then(user => {
           if (!user) {
-            const newUser = new model({
+            const newUser = new Model({
               email,
               password,
               token
@@ -43,10 +44,10 @@ module.exports = {
             return newUser.save();
           }
           return Promise.reject('Email already taken');
-        })
+        });
     },
     getUserByToken(token, newToken) {
-      return model
+      return Model
         .findOneAndUpdate({token}, {token: newToken}, {new: true})
         .exec();
     }

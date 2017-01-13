@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+// import {reset} from 'redux-form';
 
 import View from './view';
 // import {removeSerie} from '../../../actions/serie/remove-serie';
@@ -10,6 +11,7 @@ import View from './view';
       removeSerieAction: serie => {
         console.log(serie);
         // dispatch(removeSerie(serie));
+        // dispatch(reset('remove_serie'));
       }
     }
   })

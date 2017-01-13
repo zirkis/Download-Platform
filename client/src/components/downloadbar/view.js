@@ -8,6 +8,13 @@ import styles from './styles.css';
 class View extends Component {
   render() {
     const links = this.props.links;
+    if (!links) {
+      return (
+        <div>
+          No links
+        </div>
+      )
+    }
     const downloadLinks = [];
     links.forEach(link => {
       downloadLinks.push(
@@ -15,7 +22,7 @@ class View extends Component {
           <Table.Cell>{link.language}</Table.Cell>
           <Table.Cell>{link.quality}</Table.Cell>
           <Table.Cell>{link.host}</Table.Cell>
-          <Table.Cell>{link.uploader}</Table.Cell>
+          <Table.Cell>{link.uploader.pseudo}</Table.Cell>
           <Table.Cell>
             <a href={link.link}>
               <Button color='red' size='small'>DOWNLOAD</Button>

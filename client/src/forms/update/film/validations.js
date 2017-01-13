@@ -3,6 +3,7 @@ import {getFilm} from '../../../actions/film/get-film';
 
 const resetValues = (dispatch) => {
   const formName = 'update_film';
+  dispatch(change(formName, 'id', null));
   dispatch(change(formName, 'name', ''));
   dispatch(change(formName, 'description', null));
   dispatch(change(formName, 'posterLink', null));
@@ -15,6 +16,7 @@ const resetValues = (dispatch) => {
 
 const fillForm = (dispatch, film) => {
   const formName = 'update_film';
+  dispatch(change(formName, 'id', film.id));
   dispatch(change(formName, 'name', film.name));
   dispatch(change(formName, 'description', film.description));
   dispatch(change(formName, 'posterLink', film.posterLink));

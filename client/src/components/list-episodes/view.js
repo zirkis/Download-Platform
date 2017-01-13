@@ -10,6 +10,13 @@ class View extends Component {
   render() {
     const content = [];
     const {episodes} = this.props;
+    if (!episodes) {
+      return (
+        <div>
+          No episode
+        </div>
+      )
+    }
     const saisons = [];
     episodes.forEach(episodes => {
       if (saisons.indexOf(episodes.saison) === -1) {

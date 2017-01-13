@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const Serie = require('./../model/common/series').model;
 
 const initSeries = {
-  init(episodes) {
+  init(uploader, episodes) {
     const series = [];
     const promisesSerie = [];
     series.push(new Serie({
@@ -28,6 +28,7 @@ const initSeries = {
       director: 'Vince Gilligan',
       country: 'USA',
       episodes: [episodes[0]._id],
+      uploader: uploader._id
     }));
 
     series.forEach(serie => {
@@ -53,6 +54,7 @@ const initSeries = {
       director: 'Andrew Kreisberg',
       country: 'USA',
       episodes: [episodes[0]._id],
+      uploader: uploader._id
     }));
 
     series.push(new Serie({
@@ -73,6 +75,7 @@ const initSeries = {
       director: 'Tim Kring',
       country: 'USA',
       episodes: [episodes[0]._id],
+      uploader: uploader._id
     }));
 
     series.push(new Serie({
@@ -93,6 +96,7 @@ const initSeries = {
       director: 'Robert Kirkman',
       country: 'USA',
       episodes: [episodes[0]._id],
+      uploader: uploader._id
     }));
 
     series.forEach(serie => {

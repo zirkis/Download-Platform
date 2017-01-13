@@ -4,6 +4,7 @@ mongoose.Promise = require('bluebird');
 
 const Schema = mongoose.Schema;
 const self = process.env.SERVER_IP;
+const ObjectId = Schema.Types.ObjectId;
 
 // eslint-disable-next-line new-cap
 const linkSchema = new Schema({
@@ -11,7 +12,7 @@ const linkSchema = new Schema({
   link: {type: String, required: true},
   quality: {type: String, required: true},
   language: {type: String, required: true},
-  uploader: {type: String}
+  uploader: {type: ObjectId, ref: 'User', required: true}
 });
 
 const model = mongoose.model('Link', linkSchema);

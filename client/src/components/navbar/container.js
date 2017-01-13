@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
 import View from './view';
-import {logout} from '../../actions/users/auth';
+import {logout} from '../../actions/user/auth';
 
 @connect(store => {
     return {

@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {reset} from 'redux-form';
 
 import View from './view';
-// import {updateFilm} from '../../../actions/update-film';
+import {updateFilm} from '../../../actions/film/update-film';
 
 @connect(null,
   dispatch => {
     return {
       updateFilmAction: film => {
-        console.log(film);
-        // dispatch(updateFilm(film));
+        dispatch(updateFilm(film));
+        dispatch(reset('update_film'));
       }
     }
   })

@@ -1,7 +1,6 @@
 import {FilmSerializer} from '../../serializers/film';
 import * as api from '../api';
 import * as C from '../../constants/film';
-import {getLinks} from '../links/get-links';
 
 function fetchFilm() {
   return {
@@ -11,33 +10,19 @@ function fetchFilm() {
 
 export function getFilm(filter) {
   return dispatch => {
-    let film = null;
+    let include = 'uploader,downloadLinks';
     dispatch(fetchFilm());
-    return api.getRessource('films', filter)
+    return api.getRessource('films', filter, include)
       .then(res => {
-        const films = res.data.data;
-        if (!films.length) {
-          throw new Error('No film');
-        }
-        film = films[0];
-        const links = film.relationships.downloadLinks.data.map(link => {
-          return link.id;
-        });
-        return getLinks(links);
+        return FilmSerializer.deserialize(res.data);
       })
-      .then(links => {
-        const data = {
-          "data": film,
-          "included": links
-        };
-        return FilmSerializer.deserialize(data);
-      })
-      .then(filmDeserialized => {
+      .then(filmsDeserialized => {
+        console.log(filmsDeserialized);
         dispatch({
           type: C.FILM_FULFILLED,
-          payload: filmDeserialized
+          payload: filmsDeserialized[0]
         });
-        return filmDeserialized;
+        return filmsDeserialized[0];
       })
       .catch(err => {
         dispatch({

@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const Episode = require('./../model/common/episodes').model;
 
 const initEpisodes = {
-  init(links) {
+  init(uploader, links) {
     const episodes = [];
     const promisesEpisode = [];
     episodes.push(new Episode({
@@ -18,7 +18,8 @@ const initEpisodes = {
       'connaissances en chimie, il s\'attelle à la fabrication de ' +
       'méthamphétamines, avec l\'aide de Jesse Pinkman, un ancien ' +
       'élève qui s\'est spécialisé dans le trafic de drogues...',
-      downloadLinks: [links[0]._id,links[1]._id]
+      links: [links[0]._id,links[1]._id],
+      uploader: uploader._id
     }));
 
     episodes.forEach(episode => {

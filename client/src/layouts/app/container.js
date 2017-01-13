@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import View from './view';
-import {logout, checkAuth} from '../../actions/users/auth';
+import {logout, checkAuth} from '../../actions/user/auth';
 
 @connect(store => {
     return {

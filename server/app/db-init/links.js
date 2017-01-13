@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const Link = require('./../model/common/links').model;
 
 const initLinks = {
-  init() {
+  init(uploader) {
     const links = [];
     const promisesLink = [];
     links.push(new Link({
@@ -10,14 +10,14 @@ const initLinks = {
       link: 'http://www.megaupload.com',
       quality: '720p',
       language: 'VO',
-      uploader: 'zirkis'
+      uploader: uploader._id
     }));
     links.push(new Link({
       host: 'FileShare',
       link: 'http://www.fileshare.com',
       quality: '1080p',
       language: 'VF',
-      uploader: 'didi34'
+      uploader: uploader._id
 
     }));
     links.push(new Link({
@@ -25,7 +25,7 @@ const initLinks = {
       link: 'http://www.piratebay.com',
       quality: '4K',
       language: 'VOST',
-      uploader: 'momo60'
+      uploader: uploader._id
 
     }));
     links.forEach(link => {
