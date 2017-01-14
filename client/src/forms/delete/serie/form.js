@@ -25,7 +25,7 @@ const validate = values => {
 };
 
 @reduxForm({
-  form: 'remove_serie',
+  form: 'delete_serie',
   validate,
 })
 @CSSModules(styles)

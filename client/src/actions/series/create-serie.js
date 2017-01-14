@@ -1,4 +1,4 @@
-import * as C from '../../constants/serie';
+import * as C from '../../constants/series';
 
 function serieCreate() {
   return {

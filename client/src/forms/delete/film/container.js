@@ -30,10 +30,15 @@ class Container extends Component {
       });
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
-    }
+    const {loaded} = this.state;
     const {onSubmit, films} = this.props;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
+    }
     return (
       <Form
         films={films}

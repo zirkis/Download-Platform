@@ -7,7 +7,6 @@ import Form from './form';
 
 @connect(store => {
     const selector = formValueSelector('add_film');
-
     return {
       posterLink: selector(store, 'posterLink'),
       user: store.user

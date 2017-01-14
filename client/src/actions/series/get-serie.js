@@ -1,5 +1,5 @@
 import * as api from '../api';
-import * as C from '../../constants/serie';
+import * as C from '../../constants/series';
 import {SerieSerializer} from '../../serializers/serie';
 
 function fetchSerie() {

@@ -1,30 +1,21 @@
-import {
-  SERIES_FETCH,
-  SERIES_FULFILLED,
-  SERIES_ERROR,
-  SERIES_SORTING,
-  SERIES_SORTED,
-  SERIES_SORTED_FAIL
-} from '../constants/series';
+import * as C from '../constants/series';
 
 const initialState = {
   series: null,
   isFetching: false,
   isSorting: false,
-  isAvailable: function () {
-    return !(this.isSorting || this.isFetching);
-  }
+  isCreating: false
 };
 
 const series = (state = initialState, action) => {
   switch (action.type) {
-    case SERIES_FETCH: {
+    case C.SERIES_FETCH: {
       return {
         ...state,
         isFetching: true
       };
     }
-    case SERIES_FULFILLED: {
+    case C.SERIES_FULFILLED: {
       return {
         ...state,
         isFetching: false,
@@ -32,33 +23,73 @@ const series = (state = initialState, action) => {
         error: null
       };
     }
-    case SERIES_ERROR: {
+    case C.SERIES_ERROR: {
       return {
         ...state,
         isFetching: false,
         error: action.payload
       };
     }
-    case SERIES_SORTING: {
+    case C.SERIES_SORTING: {
       return {
         ...state,
         isSorting: true
       };
     }
-    case SERIES_SORTED: {
+    case C.SERIES_SORTED: {
       return {
         ...state,
-        series: action.payload,
-        isSorting: false
+        isSorting: false,
+        error: null
       };
     }
-    case SERIES_SORTED_FAIL: {
+    case C.SERIES_SORTED_FAIL: {
       return {
         ...state,
-        series: null,
         isSorting: false,
         error: action.payload
       }
+    }
+    case C.SERIE_CREATE: {
+      return {
+        ...state,
+        isCreating: true
+      };
+    }
+    case C.SERIE_CREATE_SUCCESS: {
+      return {
+        ...state,
+        isCreating: false,
+        series: state.series.push(action.payload),
+        error: null
+      };
+    }
+    case C.SERIE_CREATE_ERROR: {
+      return {
+        ...state,
+        isCreating: false,
+        error: action.payload
+      };
+    }
+    case C.SERIE_FETCH: {
+      return {
+        ...state,
+        isFetching: true
+      };
+    }
+    case C.SERIE_FULFILLED: {
+      return {
+        ...state,
+        isFetching: false,
+        error: null
+      };
+    }
+    case C.SERIE_ERROR: {
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
     }
     default:
       return {...state};

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, change} from 'redux-form';
 import {AutoComplete} from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import {fullBlack} from 'material-ui/styles/colors';
@@ -13,22 +13,38 @@ const floatingLabelStyle = {
 };
 
 @reduxForm({
-  form: 'remove_film',
+  form: 'delete_film',
   validate
 })
 @CSSModules(styles)
 class Form extends React.Component {
+  setFilmId(name) {
+    const {dispatch, films} = this.props;
+    if (!name) {
+      return;
+    }
+    const matchingFilms = films.filter(film => {
+      return film.name === name;
+    });
+    if (!matchingFilms || !matchingFilms.length) {
+      dispatch(change('delete_film', 'id', null));
+      return;
+    }
+    dispatch(change('delete_film', 'id', matchingFilms[0].id));
+  }
   render() {
     const {handleSubmit, films} = this.props;
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
-          <Field name="ref" component={AutoComplete} type="text"
-                 floatingLabelText="Film to remove"
+          <Field name="name" component={AutoComplete} type="text"
+                 floatingLabelText="Film to delete"
                  floatingLabelStyle={floatingLabelStyle}
                  fullWidth={true}
                  filter={AutoComplete.caseInsensitiveFilter}
                  dataSource={films.map(film => film.name)}
+                 onNewRequest={name => this.setFilmId(name)}
+                 onUpdateInput={name => this.setFilmId(name)}
           />
         </div>
         <div styleName='button'>

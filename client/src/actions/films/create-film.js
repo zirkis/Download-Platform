@@ -1,29 +1,36 @@
 import {FilmSerializer} from '../../serializers/film';
 import * as api from '../api';
-import * as C from '../../constants/film';
+import * as C from '../../constants/films';
 
-export function updateFilm(film) {
+function filmCreate() {
+  return {
+    type: C.FILM_CREATE
+  }
+}
+
+export function createFilm(film) {
   return dispatch => {
-    dispatch({type: C.FILM_UPDATE});
+    dispatch(filmCreate());
     const filmRecord = {
       ...film,
       actors: film.actors.split(/\r?\n/)
     };
     const data = FilmSerializer.serialize(filmRecord);
-    console.log(data);
-    return api.updateRessource('films', data)
+    delete data.data.id;
+    return api.postRessource('films', data)
       .then(() => {
         dispatch({
-          type: C.FILM_UPDATE_SUCCESS,
+          type: C.FILM_CREATE_SUCCESS,
           payload: film
         });
         return film;
       })
       .catch(err => {
         dispatch({
-          type: C.FILM_UPDATE_ERROR,
+          type: C.FILM_CREATE_ERROR,
           payload: err.error
         });
+        return null;
       });
   }
 }

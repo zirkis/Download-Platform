@@ -1,20 +1,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 
 import View from './view';
-// import {removeEpisode} from '../../../actions/episode/remove-episode';
 
-@connect(null,
+@connect(undefined,
   dispatch => {
     return {
-      removeEpisodeAction: id => {
-        // dispatch(removeEpisode(id));
+      redirect: path => {
+        dispatch(push(path));
       }
     }
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.removeEpisodeAction}/>;
+    const {redirect} = this.props;
+    return <View redirect={redirect}/>
   }
 }
 

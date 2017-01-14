@@ -3,20 +3,20 @@ import {connect} from 'react-redux';
 import {reset} from 'redux-form';
 
 import View from './view';
-import {updateFilm} from '../../../actions/films/update-film';
+import {deleteFilm} from '../../../actions/films/delete-film';
 
-@connect(null,
+@connect(undefined,
   dispatch => {
     return {
-      updateFilmAction: film => {
-        dispatch(updateFilm(film));
-        dispatch(reset('update_film'));
+      deleteFilmAction: form => {
+        dispatch(deleteFilm(form.id));
+        dispatch(reset('delete_film'));
       }
     }
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.updateFilmAction}/>;
+    return <View onSubmit={this.props.deleteFilmAction}/>;
   }
 }
 

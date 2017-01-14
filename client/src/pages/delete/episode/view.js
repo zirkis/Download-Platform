@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
 
 import styles from './styles.css';
-import RemoveFilmForm from '../../../forms/remove/film/container';
+import RemoveEpisodeForm from '../../../forms/delete/episode/container';
 
 @CSSModules(styles)
 class View extends Component {
@@ -10,7 +10,7 @@ class View extends Component {
     const {onSubmit} = this.props;
     return (
       <div styleName='container'>
-        <RemoveFilmForm onSubmit={onSubmit}/>
+        <RemoveEpisodeForm onSubmit={onSubmit}/>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import {change} from 'redux-form';
-import {getFilm} from '../../../actions/film/get-film';
+import {getFilm} from '../../../actions/films/get-film';
 
-const resetValues = (dispatch) => {
+const resetValues = dispatch => {
   const formName = 'update_film';
   dispatch(change(formName, 'id', null));
   dispatch(change(formName, 'name', ''));

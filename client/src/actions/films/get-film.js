@@ -1,6 +1,6 @@
 import {FilmSerializer} from '../../serializers/film';
 import * as api from '../api';
-import * as C from '../../constants/film';
+import * as C from '../../constants/films';
 
 function fetchFilm() {
   return {

@@ -3,21 +3,21 @@ import {connect} from 'react-redux';
 // import {reset} from 'redux-form';
 
 import View from './view';
-// import {removeSerie} from '../../../actions/serie/remove-serie';
+// import {deleteSerie} from '../../../actions/serie/delete-serie';
 
-@connect(null,
+@connect(undefined,
   dispatch => {
     return {
-      removeSerieAction: serie => {
+      deleteSerieAction: serie => {
         console.log(serie);
-        // dispatch(removeSerie(serie));
-        // dispatch(reset('remove_serie'));
+        // dispatch(deleteSerie(serie));
+        // dispatch(reset('delete_serie'));
       }
     }
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.removeSerieAction}/>;
+    return <View onSubmit={this.props.deleteSerieAction}/>;
   }
 }
 

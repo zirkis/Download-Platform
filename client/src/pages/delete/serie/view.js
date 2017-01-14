@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CSSModules from 'react-css-modules';
 
 import styles from './styles.css';
-import RemoveSerieForm from '../../../forms/remove/serie/container';
+import RemoveSerieForm from '../../../forms/delete/serie/container';
 
 @CSSModules(styles)
 class View extends Component {

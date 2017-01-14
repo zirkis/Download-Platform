@@ -36,8 +36,13 @@ class Container extends Component {
   }
   render() {
     const {user, redirect} = this.props;
-    if (!this.state.loaded) {
-      return null;
+    const {loaded} = this.state;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
     }
     return (
       <View

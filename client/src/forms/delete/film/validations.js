@@ -2,10 +2,10 @@ export const validate = (values, props) => {
   const films = props.films.map(film => film.name);
   const errors = {};
   const requiredFields = [
-    'ref'
+    'name'
   ];
-  if (films && films.indexOf(values.ref) === -1) {
-    errors.ref = 'No film found'
+  if (films && films.indexOf(values.name) === -1) {
+    errors.name = 'No film found'
   }
   requiredFields.forEach(field => {
     if (!values[field]) {
