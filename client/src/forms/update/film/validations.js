@@ -53,7 +53,7 @@ export const asyncValidate = (values, dispatch) => {
   const errors = {};
   return dispatch(getFilm(filter))
     .then(film => {
-      if (!film || !film.length) {
+      if (!film) {
         resetValues(dispatch);
         errors.ref = 'No film found';
       } else {

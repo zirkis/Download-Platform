@@ -45,7 +45,7 @@ function seriesDeserialize(dispatch, series, episodes, links) {
         payload: serie
       });
       return serie;
-    })
+    });
 }
 
 function getSerieEpisodes(dispatch, series) {

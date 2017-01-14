@@ -1,5 +1,5 @@
 import {change} from 'redux-form';
-import {getSerie} from '../../../actions/serie/get-serie';
+import {getSerie} from '../../../actions/series/get-serie';
 
 const resetValues = (dispatch) => {
   const formName = 'update_serie';
@@ -49,7 +49,7 @@ export const asyncValidate = (values, dispatch) => {
   const errors = {};
   return dispatch(getSerie(filter))
     .then(serie => {
-      if (!serie || !serie.length) {
+      if (!serie) {
         resetValues(dispatch);
         errors.ref = 'No serie found';
       } else {

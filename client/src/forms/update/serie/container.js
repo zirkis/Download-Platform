@@ -9,7 +9,7 @@ import {getSeries} from '../../../actions/series/get-series';
     const selector = formValueSelector('update_serie');
     return {
       isSerieSelected: selector(store, 'name') || false,
-      posterLink: selector(store, 'posterLink'),
+      posterLink: selector(store, 'posterLink') || null,
       series: store.series.series
     }
   },
@@ -20,7 +20,6 @@ import {getSeries} from '../../../actions/series/get-series';
       }
     };
   })
-
 class Container extends Component {
   constructor(props) {
     super(props);
@@ -30,16 +29,23 @@ class Container extends Component {
     };
   }
   componentWillMount() {
-    return this.props.getSeriesAction()
+    const {getSeriesAction} = this.props;
+    getSeriesAction()
       .then(() => {
         this.setState({loaded: true});
-      });
+      })
+
   }
   render() {
-    if (!this.state.loaded) {
-      return null;
-    }
     const {onSubmit, series, isSerieSelected, posterLink} = this.props;
+    const {loaded} = this.state;
+    if (!loaded) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      );
+    }
     return (
       <Form
         series={series}

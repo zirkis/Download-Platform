@@ -30,7 +30,7 @@ class Form extends React.Component {
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
-          <Field name="ref" component={TextField} type="text"
+          <Field name="ref" component={AutoComplete} type="text"
                  floatingLabelText="Serie to update"
                  floatingLabelStyle={floatingLabelStyle}
                  fullWidth={true}
