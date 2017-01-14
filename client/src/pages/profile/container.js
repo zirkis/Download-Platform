@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
 import View from './view';
+import {loadUser} from '../../actions/user/load-user';
 
 @connect(store => {
     return {
@@ -11,17 +12,37 @@ import View from './view';
   },
   dispatch => {
     return {
+      loadUserAction: token => {
+        return dispatch(loadUser(token));
+      },
       redirect: path => {
         dispatch(push(path));
       }
     }
   })
 class Container extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false
+    };
+  }
+  componentWillMount() {
+    const {user} = this.props;
+    this.props.loadUserAction(user.token)
+      .then(() => {
+        this.setState({loaded: true});
+      });
+  }
   render() {
+    const {user, redirect} = this.props;
+    if (!this.state.loaded) {
+      return null;
+    }
     return (
       <View
-        user={this.props.user}
-        redirect={this.props.redirect}/>
+        user={user.userInfo}
+        redirect={redirect}/>
     );
   }
 }

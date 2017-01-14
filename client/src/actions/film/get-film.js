@@ -8,21 +8,59 @@ function fetchFilm() {
   }
 }
 
+function cleanFilm(film) {
+  film.downloadLinks = film.downloadLinks.filter(link => {
+    return link;
+  });
+  if (!film.downloadLinks.length) {
+    film.downloadLinks = null;
+  }
+  return film;
+}
+
+function filmsDeserialize(dispatch, films, links) {
+  if (films && links && links.data && links.included) {
+    films.included = films.included.concat(links.data);
+    films.included = films.included.concat(links.included);
+  }
+  return FilmSerializer.deserialize(films)
+    .then(filmsDeserialized => {
+      const film = cleanFilm(filmsDeserialized[0]);
+      dispatch({
+        type: C.FILM_FULFILLED,
+        payload: film
+      });
+      return film;
+    })
+}
+
+function getFilmLinks(dispatch, films) {
+  const linksId = films.data[0].relationships.downloadLinks.data.map(link => {
+    return link.id;
+  });
+  if (!linksId || !linksId.length) {
+    return filmsDeserialize(dispatch, films, null);
+  }
+  const filterLink = {simple: {_id: {$in: linksId}}};
+  return api.getRessource('links', filterLink, 'uploader');
+}
+
 export function getFilm(filter) {
   return dispatch => {
-    let include = 'uploader,downloadLinks';
+    let films;
+    let links;
     dispatch(fetchFilm());
-    return api.getRessource('films', filter, include)
+    return api.getRessource('films', filter, 'uploader')
       .then(res => {
-        return FilmSerializer.deserialize(res.data);
+        films = res.data;
+        if (!films || !films.data[0]) {
+          return filmsDeserialize(dispatch, null, null);
+        }
+        return getFilmLinks(dispatch, films);
       })
-      .then(filmsDeserialized => {
-        console.log(filmsDeserialized);
-        dispatch({
-          type: C.FILM_FULFILLED,
-          payload: filmsDeserialized[0]
-        });
-        return filmsDeserialized[0];
+      .then(res => {
+        links = res.data;
+        return filmsDeserialize(dispatch, films, links);
       })
       .catch(err => {
         dispatch({

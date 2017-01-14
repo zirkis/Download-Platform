@@ -15,7 +15,9 @@ export function createFilm(film) {
       ...film,
       actors: film.actors.split(/\r?\n/)
     };
+    console.log(filmRecord);
     const data = FilmSerializer.serialize(filmRecord);
+    console.log(data);
     delete data.data.id;
     return api.postRessource('films', data)
       .then(() => {

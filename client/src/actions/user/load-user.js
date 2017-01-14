@@ -3,27 +3,29 @@ import * as C from '../../constants/user';
 
 function fetchUser() {
   return {
-    type: C.USER_FETCH
+    type: C.USER_LOADING
   }
 }
 
-export function getUser(filter) {
+export function loadUser(token) {
   return dispatch => {
     dispatch(fetchUser());
+    const filter = {simple: {token}};
     return api.getRessource('users', filter)
       .then(res => {
-        const user = res.data.data[0];
+        const user = res.data.data[0].attributes;
         dispatch({
-          type: C.USER_FULFILLED
+          type: C.USER_LOADED_OK,
+          payload: user
         });
         return user;
       })
-      .catch(() => {
+      .catch(err => {
         dispatch({
-          type: C.USER_ERROR
+          type: C.USER_LOADED_KO,
+          payload: err
         });
         return null;
       });
   }
-
 }

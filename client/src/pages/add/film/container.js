@@ -5,8 +5,12 @@ import {reset} from 'redux-form';
 import View from './view';
 import {createFilm} from '../../../actions/film/create-film';
 
-@connect(null,
-  dispatch => {
+@connect(store => {
+    return {
+      user: store.user
+    };
+  },
+  dispatch=> {
     return {
       createFilm: film => {
         dispatch(createFilm(film));
