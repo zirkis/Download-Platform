@@ -1,7 +1,40 @@
+import {change} from 'redux-form';
+import {getSerie} from '../../../actions/serie/get-serie';
+
+const resetValues = (dispatch) => {
+  const formName = 'update_serie';
+  dispatch(change(formName, 'id', null));
+  dispatch(change(formName, 'name', ''));
+  dispatch(change(formName, 'description', null));
+  dispatch(change(formName, 'posterLink', null));
+  dispatch(change(formName, 'productionDate', null));
+  dispatch(change(formName, 'actors', null));
+  dispatch(change(formName, 'director', null));
+  dispatch(change(formName, 'country', null));
+};
+const fillForm = (dispatch, serie) => {
+  const formName = 'update_serie';
+  dispatch(change(formName, 'id', serie.id));
+  dispatch(change(formName, 'name', serie.name));
+  dispatch(change(formName, 'description', serie.description));
+  dispatch(change(formName, 'posterLink', serie.posterLink));
+  dispatch(change(formName, 'productionDate', new Date(serie.productionDate)));
+  dispatch(change(formName, 'actors', serie.actors.join('\n')));
+  dispatch(change(formName, 'director', serie.director));
+  dispatch(change(formName, 'country', serie.country));
+};
+
 export const validate = values => {
   const errors = {};
   const requiredFields = [
-    'ref'
+    'ref',
+    'name',
+    'description',
+    'posterLink',
+    'productionDate',
+    'actors',
+    'director',
+    'country',
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -9,4 +42,23 @@ export const validate = values => {
     }
   });
   return errors;
+};
+
+export const asyncValidate = (values, dispatch) => {
+  const filter = {simple: {name: values.ref}};
+  const errors = {};
+  return dispatch(getSerie(filter))
+    .then(serie => {
+      if (!serie || !serie.length) {
+        resetValues(dispatch);
+        errors.ref = 'No serie found';
+      } else {
+        fillForm(dispatch, serie);
+      }
+      return errors;
+    })
+    .catch(() => {
+      errors.ref = 'No serie found';
+      return errors;
+    })
 };
