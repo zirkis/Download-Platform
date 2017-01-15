@@ -1,11 +1,13 @@
+import {getSerie} from '../../../actions/series/get-serie';
+
 export const validate = values => {
   const errors = {};
   const requiredFields = [
+    'serieSelected',
     'name',
-    'serie',
     'saison',
     'number',
-    'description'
+    'resume'
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -13,4 +15,20 @@ export const validate = values => {
     }
   });
   return errors;
+};
+
+export const asyncValidate = (values, dispatch) => {
+  const filter = {simple: {name: values.serieSelected}};
+  const errors = {};
+  return dispatch(getSerie(filter))
+    .then(serie => {
+      if (!serie) {
+        errors.serieSelected = 'No serie found';
+      }
+      return errors;
+    })
+    .catch(() => {
+      errors.serieSelected = 'No serie found';
+      return errors;
+    })
 };

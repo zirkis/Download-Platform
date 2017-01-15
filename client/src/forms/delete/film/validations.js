@@ -13,4 +13,4 @@ export const validate = (values, props) => {
     }
   });
   return errors;
-};
+}

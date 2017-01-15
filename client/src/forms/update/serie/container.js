@@ -23,18 +23,14 @@ import {getSeries} from '../../../actions/series/get-series';
 class Container extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loaded: false,
-      serie: null,
-    };
+    this.state = {loaded: false};
   }
   componentWillMount() {
     const {getSeriesAction} = this.props;
     getSeriesAction()
       .then(() => {
         this.setState({loaded: true});
-      })
-
+      });
   }
   render() {
     const {onSubmit, series, isSerieSelected, posterLink} = this.props;

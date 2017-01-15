@@ -20,7 +20,7 @@ const floatingLabelStyle = {
 class Form extends React.Component {
   setFilmId(name) {
     const {dispatch, films} = this.props;
-    if (!name) {
+    if (!name || !films || !films.length) {
       return;
     }
     const matchingFilms = films.filter(film => {

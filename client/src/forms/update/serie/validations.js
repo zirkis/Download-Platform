@@ -27,7 +27,7 @@ const fillForm = (dispatch, serie) => {
 export const validate = values => {
   const errors = {};
   const requiredFields = [
-    'ref',
+    'serieSelected',
     'name',
     'description',
     'posterLink',
@@ -53,20 +53,20 @@ export const validate = values => {
 };
 
 export const asyncValidate = (values, dispatch) => {
-  const filter = {simple: {name: values.ref}};
+  const filter = {simple: {name: values.serieSelected}};
   const errors = {};
   return dispatch(getSerie(filter))
     .then(serie => {
       if (!serie) {
         resetValues(dispatch);
-        errors.ref = 'No serie found';
+        errors.serieSelected = 'No serie found';
       } else {
         fillForm(dispatch, serie);
       }
       return errors;
     })
     .catch(() => {
-      errors.ref = 'No serie found';
+      errors.serieSelected = 'No serie found';
       return errors;
     })
 };

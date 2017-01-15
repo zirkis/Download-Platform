@@ -16,7 +16,8 @@ import {createFilm} from '../../../actions/films/create-film';
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.createFilmAction}/>;
+    const {createFilmAction} = this.props;
+    return <View onSubmit={createFilmAction}/>;
   }
 }
 

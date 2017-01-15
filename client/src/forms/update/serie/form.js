@@ -17,7 +17,7 @@ const floatingLabelStyle = {
   form: 'update_serie',
   validate,
   asyncValidate,
-  asyncBlurFields: ['ref']
+  asyncBlurFields: ['serieSelected']
 })
 @CSSModules(styles)
 class Form extends React.Component {
@@ -30,7 +30,7 @@ class Form extends React.Component {
     return (
       <form onSubmit={handleSubmit} styleName='form'>
         <div>
-          <Field name="ref" component={AutoComplete} type="text"
+          <Field name="serieSelected" component={AutoComplete} type="text"
                  floatingLabelText="Serie to update"
                  floatingLabelStyle={floatingLabelStyle}
                  fullWidth={true}
