@@ -5,14 +5,10 @@ import {reset} from 'redux-form';
 import View from './view';
 import {createFilm} from '../../../actions/films/create-film';
 
-@connect(store => {
-    return {
-      user: store.user
-    };
-  },
+@connect(undefined,
   dispatch=> {
     return {
-      createFilm: film => {
+      createFilmAction: film => {
         dispatch(createFilm(film));
         dispatch(reset('add_film'));
       }
@@ -20,7 +16,7 @@ import {createFilm} from '../../../actions/films/create-film';
   })
 class Container extends Component {
   render() {
-    return <View onSubmit={this.props.createFilm}/>;
+    return <View onSubmit={this.props.createFilmAction}/>;
   }
 }
 

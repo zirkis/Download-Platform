@@ -19,8 +19,8 @@ function cleanSerie(serie) {
   for (let i = 0; i < serie.episodes.length; i++) {
     serie.episodes[i].downloadLinks = serie.episodes[i].downloadLinks
       .filter(links => {
-      return links;
-    });
+        return links;
+      });
     if (!serie.episodes[i].downloadLinks.length) {
       serie.episodes[i].downloadLinks = null;
     }
@@ -48,18 +48,18 @@ function seriesDeserialize(dispatch, series, episodes, links) {
     });
 }
 
-function getSerieEpisodes(dispatch, series) {
+function getSerieEpisodes(series) {
   const episodesId = series.data[0].relationships.episodes.data.map(episode => {
     return episode.id;
   });
   if (!episodesId || !episodesId.length) {
-    return seriesDeserialize(dispatch, series, null, null);
+    return Promise.resolve();
   }
   const filterEpisode = {simple: {_id: {$in: episodesId}}};
   return api.getRessource('episodes', filterEpisode, 'uploader');
 }
 
-function getSerieEpisodesLinks(dispatch, series, episodes) {
+function getSerieEpisodesLinks(episodes) {
   const linksId = [];
   episodes.data.forEach(episode => {
     const episodeLinks = episode.relationships.downloadLinks.data.map(link => {
@@ -68,7 +68,7 @@ function getSerieEpisodesLinks(dispatch, series, episodes) {
     linksId.concat(episodeLinks);
   });
   if (!linksId || !linksId.length) {
-    return seriesDeserialize(dispatch, series, episodes, null);
+    return Promise.resolve();
   }
   const filterLink = {simple: {_id: {$in: linksId}}};
   return api.getRessource('links', filterLink, 'uploader');
@@ -86,18 +86,22 @@ export function getSerie(filter) {
         if (!series || !series.data[0]) {
           return seriesDeserialize(dispatch, null, null, null);
         }
-        return getSerieEpisodes(dispatch, series);
-      })
-      .then(res => {
-        episodes = res.data;
-        if (!episodes || !episodes.data[0]) {
-          return seriesDeserialize(dispatch, series, null, null);
-        }
-        return getSerieEpisodesLinks(dispatch, series, episodes);
-      })
-      .then(res => {
-        links = res.data;
-        return seriesDeserialize(dispatch, series, episodes, links);
+        return getSerieEpisodes(series)
+          .then(res => {
+            if (res && res.data) {
+              episodes = res.data
+            }
+            if (!episodes || !episodes.data[0]) {
+              return seriesDeserialize(dispatch, series, null, null);
+            }
+            return getSerieEpisodesLinks(episodes)
+              .then(res => {
+                if (res && res.data) {
+                  links = res.data;
+                }
+                return seriesDeserialize(dispatch, series, episodes, links);
+              });
+          })
       })
       .catch(err => {
         dispatch({

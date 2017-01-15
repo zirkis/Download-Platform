@@ -34,12 +34,12 @@ function filmsDeserialize(dispatch, films, links) {
     })
 }
 
-function getFilmLinks(dispatch, films) {
+function getFilmLinks(films) {
   const linksId = films.data[0].relationships.downloadLinks.data.map(link => {
     return link.id;
   });
   if (!linksId || !linksId.length) {
-    return filmsDeserialize(dispatch, films, null);
+    return Promise.resolve();
   }
   const filterLink = {simple: {_id: {$in: linksId}}};
   return api.getRessource('links', filterLink, 'uploader');
@@ -56,11 +56,13 @@ export function getFilm(filter) {
         if (!films || !films.data[0]) {
           return filmsDeserialize(dispatch, null, null);
         }
-        return getFilmLinks(dispatch, films);
-      })
-      .then(res => {
-        links = res.data;
-        return filmsDeserialize(dispatch, films, links);
+        return getFilmLinks(films)
+          .then(res => {
+            if (res && res.data)  {
+              links = res.data;
+            }
+            return filmsDeserialize(dispatch, films, links);
+          });
       })
       .catch(err => {
         dispatch({

@@ -48,7 +48,6 @@ const films = (state = initialState, action) => {
     case C.FILMS_SORTED_FAIL: {
       return {
         ...state,
-        films: null,
         isSorting: false,
         error: action.payload
       }
@@ -61,10 +60,11 @@ const films = (state = initialState, action) => {
       };
     }
     case C.FILM_CREATE_SUCCESS: {
+      const films = [...state.films, action.payload];
       return {
         ...state,
         isCreating: false,
-        films: state.films.push(action.payload),
+        films,
         error: null
       };
     }

@@ -25,7 +25,7 @@ export function deleteFilm(_id) {
       })
       .then(() => {
         if (!film.downloadLinks || !film.downloadLinks.length) {
-          return deleteSuccess(dispatch, film);
+          return Promise.resolve();
         }
         const linksId = film.downloadLinks.map(link => {
           return link.id;

@@ -5,7 +5,7 @@ import * as C from '../../constants/films';
 function filmCreate() {
   return {
     type: C.FILM_CREATE
-  }
+  };
 }
 
 export function createFilm(film) {
