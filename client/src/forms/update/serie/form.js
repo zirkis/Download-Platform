@@ -92,7 +92,7 @@ class Form extends React.Component {
           </div>
           <div>
             <Field name="actors" component={TextField} type="text"
-                   floatingLabelText="New Actors"
+                   floatingLabelText="New Actors (one line per actor, 3 minimum)"
                    floatingLabelStyle={floatingLabelStyle}
                    multiLine={true}
                    fullWidth={true}

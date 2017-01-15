@@ -8,8 +8,8 @@ import {updateSerie} from '../../../actions/series/update-serie';
 @connect(null,
   dispatch => {
     return {
-      updateSerieAction: film => {
-        dispatch(updateSerie(film));
+      updateSerieAction: serie => {
+        dispatch(updateSerie(serie));
         dispatch(reset('update_serie'));
       }
     }

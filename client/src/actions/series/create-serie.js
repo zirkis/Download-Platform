@@ -12,7 +12,7 @@ export function createSerie(serie) {
     dispatch(serieCreate());
     const serieRecord = {
       ...serie,
-      actors: serie.actors.split(/\r?\n/)
+      actors: serie.actors.split(/\r?\n/).filter(actor => {return actor !== ''})
     };
     console.log(serieRecord);
     const data = SerieSerializer.serialize(serieRecord);

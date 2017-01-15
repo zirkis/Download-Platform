@@ -11,6 +11,7 @@ const initialState = {
 
 const films = (state = initialState, action) => {
   switch (action.type) {
+    // FETCH FILMS
     case C.FILMS_FETCH: {
       return {
         ...state,
@@ -32,6 +33,7 @@ const films = (state = initialState, action) => {
         error: action.payload
       };
     }
+    // SORT FILMS
     case C.FILMS_SORTING: {
       return {
         ...state,

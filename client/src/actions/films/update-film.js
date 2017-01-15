@@ -7,7 +7,7 @@ export function updateFilm(film) {
     dispatch({type: C.FILM_UPDATE});
     const filmRecord = {
       ...film,
-      actors: film.actors.split(/\r?\n/)
+      actors: film.actors.split(/\r?\n/).filter(actor => {return actor !== ''})
     };
     const data = FilmSerializer.serialize(filmRecord);
     return api.updateRessource('films', data)

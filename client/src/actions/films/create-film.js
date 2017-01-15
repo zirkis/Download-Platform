@@ -13,7 +13,7 @@ export function createFilm(film) {
     dispatch(filmCreate());
     const filmRecord = {
       ...film,
-      actors: film.actors.split(/\r?\n/)
+      actors: film.actors.split(/\r?\n/).filter(actor => {return actor !== ''})
     };
     const data = FilmSerializer.serialize(filmRecord);
     delete data.data.id;

@@ -4,11 +4,13 @@ const initialState = {
   series: null,
   isFetching: false,
   isSorting: false,
-  isCreating: false
+  isCreating: false,
+  isUpdating: false
 };
 
 const series = (state = initialState, action) => {
   switch (action.type) {
+    // FETCH SERIES
     case C.SERIES_FETCH: {
       return {
         ...state,
@@ -30,6 +32,7 @@ const series = (state = initialState, action) => {
         error: action.payload
       };
     }
+    // SORT SERIES
     case C.SERIES_SORTING: {
       return {
         ...state,
@@ -50,6 +53,7 @@ const series = (state = initialState, action) => {
         error: action.payload
       }
     }
+    // CREATE SERIE
     case C.SERIE_CREATE: {
       return {
         ...state,
@@ -71,6 +75,35 @@ const series = (state = initialState, action) => {
         error: action.payload
       };
     }
+    // UPDATE SERIE
+    case C.SERIE_UPDATE: {
+      return {
+        ...state,
+        isUpdating: true
+      };
+    }
+    case C.SERIE_UPDATE_SUCCESS: {
+      const series = state.series.map(serie => {
+        if (serie.id === action.payload.id) {
+          return action.payload;
+        }
+        return serie;
+      });
+      return {
+        ...state,
+        series,
+        isUpdating: false,
+        error: null
+      };
+    }
+    case C.SERIE_UPDATE_ERROR: {
+      return {
+        ...state,
+        isUpdating: false,
+        error: action.payload
+      };
+    }
+    // FETCH SERIE
     case C.SERIE_FETCH: {
       return {
         ...state,
