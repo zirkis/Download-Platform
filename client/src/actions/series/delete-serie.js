@@ -1,13 +1,26 @@
 import * as api from '../api';
 import * as C from '../../constants/series';
 import {getSerie} from './get-serie';
+import {deleteEpisode} from '../episodes/delete-episode';
 
-function deleteSuccess(dispatch, serie) {
-  dispatch({
+function deleteInProgress() {
+  return {
+    type: C.SERIE_DELETE
+  };
+}
+
+function deleteSuccess(serieId) {
+  return {
     type: C.SERIE_DELETE_SUCCESS,
-    payload: serie
-  });
-  return 'OK';
+    payload: serieId
+  };
+}
+
+function deleteError(error) {
+  return {
+    type: C.SERIE_DELETE_ERROR,
+    payload: error
+  };
 }
 
 export function deleteSerie(_id) {
@@ -18,38 +31,36 @@ export function deleteSerie(_id) {
       .then(_serie => {
         serie = _serie;
         if (!serie) {
-          return dispatch({type: C.SERIE_DELETE_ERROR});
+          return deleteError(dispatch,
+            'Impossible to delete non existing serie');
         }
-        dispatch({type: C.SERIE_DELETE});
-        console.log(serie);
-        // return api.deleteRessource('series', serie.id)
+        dispatch(deleteInProgress());
+        return api.deleteRessource('series', serie.id);
       })
       .then(() => {
-        if (!serie.downloadLinks || !serie.downloadLinks.length) {
+        if (!serie.episodes || !serie.episodes.length) {
           return Promise.resolve();
         }
-        const linksId = serie.downloadLinks.map(link => {
-          return link.id;
+        const episodesId = serie.episodes.map(episode => {
+          return episode.id;
         });
-        if (!linksId || !linksId.length) {
+        if (!episodesId || !episodesId.length) {
           return Promise.resolve();
         }
-        const linksPromise = [];
-        linksId.forEach(linkId => {
-          const promise = api.deleteRessource('links', linkId);
-          linksPromise.push(promise);
+        const episodesPromise = [];
+        episodesId.forEach(episodeId => {
+          const promise = deleteEpisode(episodeId);
+          episodesPromise.push(promise);
         });
-        return Promise.all(linksPromise);
+        return Promise.all(episodesPromise);
       })
       .then(() => {
-        return deleteSuccess(dispatch, serie);
+        dispatch(deleteSuccess(_id));
+        return 'DELETED';
       })
       .catch(err => {
-        dispatch({
-          type: C.SERIE_DELETE_ERROR,
-          payload: err.error
-        });
+        dispatch(deleteError(err));
         return null;
       });
-  }
+  };
 }

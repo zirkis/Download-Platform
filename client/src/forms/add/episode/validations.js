@@ -1,3 +1,4 @@
+import {change} from 'redux-form';
 import {getSerie} from '../../../actions/series/get-serie';
 
 export const validate = values => {
@@ -11,7 +12,7 @@ export const validate = values => {
   ];
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'Required'
+      errors[field] = 'Required';
     }
   });
   return errors;
@@ -24,11 +25,14 @@ export const asyncValidate = (values, dispatch) => {
     .then(serie => {
       if (!serie) {
         errors.serieSelected = 'No serie found';
+        dispatch(change('add_episode', 'serie', null));
+      } else {
+        dispatch(change('add_episode', 'serie', serie));
       }
       return errors;
     })
     .catch(() => {
       errors.serieSelected = 'No serie found';
       return errors;
-    })
+    });
 };

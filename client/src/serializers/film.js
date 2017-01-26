@@ -23,9 +23,13 @@ export const FilmSerializer = {
         'downloadLinks',
         'uploader'
       ],
-      typeForAttribute: function (attribute, data) {
+      typeForAttribute(attribute, data) {
         // sometimes this returns undefined
         return data.customType;
+      },
+      downloadLinks: {
+        ref: 'id',
+        included: false
       },
       uploader: {
         ref: 'id',
