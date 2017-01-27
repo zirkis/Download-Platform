@@ -4,6 +4,9 @@ Movies & Series download platform application. Coded in JavaScript, with React &
 
 Include a server and a client, which need to be run separately.
 
+Login : Admin
+Password : admin
+
 Code by DIDELOT KEVIN & HAOUI Benjamin.
 
 Subject: https://framadrop.org/r/nqjsARENma#nqvtUd+RJqYgPvrsur2JY+RnxnNmH9+0xsQhtM0WhTQ=
