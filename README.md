@@ -21,11 +21,15 @@ You will need the following things properly installed on your computer.
 
 ### Installation
 
-* `yarn install`
+```bash
+$ yarn install
+```
 
 ### Running / Development
 
-* `yarn start`
+```bash
+$ yarn start
+```
 
 ## Client
 
@@ -40,3 +44,15 @@ $ yarn install
 ```bash
 $ yarn start
 ```
+
+## Screenshots
+
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.44.12.png)
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.44.28.png)
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.44.31.png)
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.44.36.png)
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.44.51.png)
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.44.57.png)
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.45.24.png)
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.45.47.png)
+![alt tag](https://github.com/zirkis/IWA/blob/master/screenshots/Capture%20d’écran%202017-01-27%20à%2020.46.02.png)
