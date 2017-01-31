@@ -27,8 +27,9 @@ export function deleteEpisode(_id) {
   return dispatch => {
     let episode;
     const filter = {simple: {_id}};
-    return getEpisode(filter)
-      .then(episode => {
+    return dispatch(getEpisode(filter))
+      .then(res => {
+        episode = res;
         dispatch(deleteInProgress());
         return api.deleteRessource('episodes', episode.id);
       })

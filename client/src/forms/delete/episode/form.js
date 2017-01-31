@@ -41,10 +41,10 @@ class Form extends React.Component {
       return episode.name === name;
     });
     if (!matchingEpisodes || !matchingEpisodes.length) {
-      dispatch(change('delete_episode', 'episodeId', null));
+      dispatch(change('delete_episode', 'episodeSelected', null));
       return;
     }
-    dispatch(change('delete_episode', 'episodeId', matchingEpisodes[0].id));
+    dispatch(change('delete_episode', 'episodeSelected', matchingEpisodes[0]));
   }
   render() {
     const {handleSubmit, serieSelected, series, episodes} = this.props;
@@ -62,7 +62,7 @@ class Form extends React.Component {
       <form onSubmit={handleSubmit} styleName="form">
         <div>
           <Field name="serie" component={AutoComplete} type="text"
-            floatingLabelText="Serie to delete"
+            floatingLabelText="Serie to delete episode"
             floatingLabelStyle={floatingLabelStyle}
             fullWidth={true}
             filter={AutoComplete.caseInsensitiveFilter}
@@ -74,7 +74,7 @@ class Form extends React.Component {
         {serieSelected &&
         <div>
           <Field name="episode" component={AutoComplete} type="text"
-            floatingLabelText="Episode to delete"
+            floatingLabelText="Episode to delete episode"
             floatingLabelStyle={floatingLabelStyle}
             fullWidth={true}
             filter={AutoComplete.caseInsensitiveFilter}

@@ -15,7 +15,8 @@ const floatingLabelStyle = {
 @reduxForm({
   form: 'add_episode',
   validate,
-  asyncValidate
+  asyncValidate,
+  asyncBlurFields: ['serieSelected']
 })
 @CSSModules(styles)
 class Form extends React.Component {

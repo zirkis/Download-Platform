@@ -25,13 +25,15 @@ function updateError(error) {
 export function updateSerie(serie) {
   return dispatch => {
     dispatch(updateInProgress());
-    const serieRecord = {
+    serie = {
       ...serie,
       actors: serie.actors.split(/\r?\n/).filter(actor => {
         return actor !== '';
       })
     };
-    const data = SerieSerializer.serialize(serieRecord);
+    console.log(serie);
+    const data = SerieSerializer.serialize(serie);
+    console.log(data);
     return api.updateRessource('series', data)
       .then(() => {
         dispatch(updateSuccess(serie));

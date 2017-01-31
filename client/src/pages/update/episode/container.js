@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-// import {reset} from 'redux-form';
+import {reset} from 'redux-form';
 
 import View from './view';
-// import {updateEpisode} from '../../../actions/episode/update-episode';
+import {updateEpisode} from '../../../actions/episodes/update-episode';
 
 @connect(null,
   dispatch => {
     return {
       updateEpisodeAction: episode => {
-        // dispatch(updateEpisode(episode));
-        // dispatch(reset('update_episode'));
+        dispatch(updateEpisode(episode));
+        dispatch(reset('update_episode'));
       }
     };
   })

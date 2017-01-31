@@ -4,6 +4,7 @@ const initialState = {
   episodes: [],
   isFetching: false,
   isCreating: false,
+  isUpdating: false,
   isDeleting: false,
   error: null
 };
@@ -65,6 +66,39 @@ const episodes = (state = initialState, action) => {
         error: action.payload
       };
     }
+    // UPDATE EPISODE
+    case C.EPISODE_UPDATE: {
+      return {
+        ...state,
+        isUpdating: true
+      };
+    }
+    case C.EPISODE_UPDATE_SUCCESS: {
+      const episodes = state.episodes.map(episode => {
+        if (episode.id === action.payload.id) {
+          for(let k in action.payload) {
+            if(action.payload.hasOwnProperty(k)) {
+              episode[k]=action.payload[k];
+            }
+          }
+
+        }
+        return episode;
+      });
+      return {
+        ...state,
+        episodes,
+        isUpdating: false,
+        error: null
+      };
+    }
+    case C.EPISODE_UPDATE_ERROR: {
+      return {
+        ...state,
+        isUpdating: false,
+        error: action.payload
+      };
+    }
     // DELETE EPISODE
     case C.EPISODE_DELETE: {
       return {
@@ -73,7 +107,7 @@ const episodes = (state = initialState, action) => {
       };
     }
     case C.EPISODE_DELETE_SUCCESS: {
-      const episodes = state.films.filter(episode => {
+      const episodes = state.episodes.filter(episode => {
         return episode.id !== action.payload;
       });
       return {

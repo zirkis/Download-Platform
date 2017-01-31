@@ -5,7 +5,8 @@ const initialState = {
   isFetching: false,
   isSorting: false,
   isCreating: false,
-  isUpdating: false
+  isUpdating: false,
+  isDeleting: false
 };
 
 const series = (state = initialState, action) => {
@@ -71,10 +72,11 @@ const series = (state = initialState, action) => {
       };
     }
     case C.SERIE_CREATE_SUCCESS: {
+      const series = [...state.series, action.payload];
       return {
         ...state,
         isCreating: false,
-        series: state.series.push(action.payload),
+        series,
         error: null
       };
     }
@@ -114,6 +116,31 @@ const series = (state = initialState, action) => {
       return {
         ...state,
         isUpdating: false,
+        error: action.payload
+      };
+    }
+    // DELETE SERIE
+    case C.SERIE_DELETE: {
+      return {
+        ...state,
+        isDeleting: true
+      };
+    }
+    case C.SERIE_DELETE_SUCCESS: {
+      const series = state.series.filter(serie => {
+        return serie.id !== action.payload;
+      });
+      return {
+        ...state,
+        series,
+        isDeleting: false,
+        error: null
+      };
+    }
+    case C.SERIE_DELETE_ERROR: {
+      return {
+        ...state,
+        isDeleting: false,
         error: action.payload
       };
     }

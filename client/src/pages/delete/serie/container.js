@@ -9,7 +9,6 @@ import {deleteSerie} from '../../../actions/series/delete-serie';
   dispatch => {
     return {
       deleteSerieAction: serie => {
-        console.log(serie);
         dispatch(deleteSerie(serie.id));
         dispatch(reset('delete_serie'));
       }

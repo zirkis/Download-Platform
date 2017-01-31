@@ -49,7 +49,7 @@ export function deleteSerie(_id) {
         }
         const episodesPromise = [];
         episodesId.forEach(episodeId => {
-          const promise = deleteEpisode(episodeId);
+          const promise = dispatch(deleteEpisode(episodeId));
           episodesPromise.push(promise);
         });
         return Promise.all(episodesPromise);

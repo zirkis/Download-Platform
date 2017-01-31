@@ -14,7 +14,15 @@ export const LinkSerializer = {
         'quality',
         'language',
         'uploader'
-      ]
+      ],
+      typeForAttribute(attribute, data) {
+        // sometimes this returns undefined
+        return data.customType;
+      },
+      uploader: {
+        ref: 'id',
+        included: false
+      }
     }).serialize(data);
   },
   deserialize(data) {

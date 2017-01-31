@@ -51,10 +51,12 @@ function seriesDeserialize(dispatch, series, episodes, links) {
     series.included = series.included.concat(links.data);
     series.included = series.included.concat(links.included);
   }
+  console.log(series);
   return SerieSerializer.deserialize(series)
     .then(seriesDeserialized => {
       const serie = cleanSerie(seriesDeserialized[0]);
       dispatch(fetchSuccess(serie));
+      console.log(serie);
       return serie;
     });
 }
@@ -71,12 +73,12 @@ function getSerieEpisodes(series) {
 }
 
 function getSerieEpisodesLinks(episodes) {
-  const linksId = [];
+  let linksId = [];
   episodes.data.forEach(episode => {
     const episodeLinks = episode.relationships.downloadLinks.data.map(link => {
       return link.id;
     });
-    linksId.concat(episodeLinks);
+    linksId = linksId.concat(episodeLinks);
   });
   if (!linksId || !linksId.length) {
     return Promise.resolve();

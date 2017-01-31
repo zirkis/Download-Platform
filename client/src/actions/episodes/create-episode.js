@@ -1,7 +1,7 @@
 import {EpisodeSerializer} from '../../serializers/episode';
 import * as api from '../api';
 import * as C from '../../constants/episodes';
-import {serieUpdate} from '../series/update-serie';
+import {updateSerie} from '../series/update-serie';
 
 function createInProgress() {
   return {
@@ -38,16 +38,17 @@ export function createEpisode(episode) {
 
     return api.postRessource('episodes', episodeSerialized)
       .then(res => {
-        const savedEpisode = res.data;
-        episode.id = savedEpisode.data.id;
+        episode.id = res.data.data.id;
         if (!serie.episodes) {
           serie.episodes= [];
         }
-        serie.episodes.push(savedEpisode.data.id);
-        dispatch(createSuccess(episode));
-        return dispatch(serieUpdate(serie));
+        serie.episodes.push({id: episode.id});
+        serie.actors = serie.actors.join('\n');
+
+        return dispatch(updateSerie(serie));
       })
       .then(() => {
+        dispatch(createSuccess(episode));
         return episode;
       })
       .catch(err => {

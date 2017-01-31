@@ -25,12 +25,12 @@ function createError(error) {
 export function createSerie(serie) {
   return dispatch => {
     dispatch(createInProgress());
-    const serieRecord = {
+    serie = {
       ...serie,
-      actors: serie.actors.split(/\r?\n/).filter(actor =>  actor !== ''),
+      actors: serie.actors.split(/\r?\n/).filter(actor => actor !== ''),
       addedAt: Date.now()
     };
-    const data = SerieSerializer.serialize(serieRecord);
+    const data = SerieSerializer.serialize(serie);
     delete data.data.id;
     return api.postRessource('series', data)
       .then(res => {

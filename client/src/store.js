@@ -3,12 +3,12 @@ import multi from 'redux-multi';
 import thunk from 'redux-thunk';
 import {browserHistory} from 'react-router';
 import {routerMiddleware} from 'react-router-redux';
-import createLogger from 'redux-logger';
+// import createLogger from 'redux-logger';
 
 import reducer from './reducers';
 
 const middleware = applyMiddleware(
-  createLogger({collapsed: true}),
+  // createLogger({collapsed: true}),
   routerMiddleware(browserHistory),
   multi,
   thunk

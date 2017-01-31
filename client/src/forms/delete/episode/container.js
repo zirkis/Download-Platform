@@ -10,6 +10,7 @@ import {getSerieEpisode} from '../../../actions/series/get-serie-episodes';
   const selector = formValueSelector('delete_episode');
   return {
     serieSelected: selector(store, 'serieSelected') || false,
+    episodeSelected: selector(store, 'episodeSelected') || false,
     series: store.series.series,
     episodes: store.episodes.episodes
   };
@@ -58,7 +59,7 @@ class Container extends Component {
   }
   render() {
     const {loaded, episodes} = this.state;
-    const {onSubmit, serieSelected, series} = this.props;
+    const {onSubmit, serieSelected, episodeSelected, series} = this.props;
 
     if (!loaded) {
       return (
@@ -70,6 +71,7 @@ class Container extends Component {
     return (
       <Form
         serieSelected={serieSelected}
+        episodeSelected={episodeSelected}
         series={series}
         episodes={episodes}
         onSubmit={onSubmit}
